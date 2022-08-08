@@ -1,5 +1,5 @@
 import React from "react";
-import {Login, Register} from '../../Components'
+import {AddNewItem, Login, Register} from '../../Components'
 
 const Registration = () => {
     return (
@@ -7,6 +7,7 @@ const Registration = () => {
         <h1>Welcome to Preloved</h1>
         <Login/>
         <Register/>
+     
         </>
         
     )}
