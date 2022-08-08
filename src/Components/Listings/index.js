@@ -20,8 +20,11 @@ function Listings() {
           return (
             <Link key={listing.id} to={`/home/${listing.id}`}>
               <li key={listing.id} className="listings">
-                <img src="string" />
+                <img src={listing.images} />
+                <p>Name: {listing.item_name}</p>
                 <p>Description: {listing.description}</p>
+                <p>Category: {listing.category}</p>
+                <p>Size: {listing.size}</p>
               </li>
             </Link>
           );
