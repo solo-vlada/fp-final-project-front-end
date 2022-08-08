@@ -7,7 +7,7 @@ Commands to set up a React-Redux Toolkit  app with Material UI
 3. npm i react-router-dom
 4. npm i axios
 5. npm install @mui/material @emotion/react @emotion/styled 
-6. 
+6. npm install @mui/icons-material
 
 
 Usage
