@@ -36,45 +36,32 @@ const style = {
     const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const registerData = {username: username, email: email, password: password, location: location}
-        console.log(registerData) 
-        // const options = {
+        const formData = new FormData();
 
-        //   headers: {
-        //     "content-type": "application/json",
-        //     "Access-Control-Allow-Origin": "*"
+        formData.append("username", username );
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("location", location);
+        console.log(...formData);
 
-        //   }
-
-        // }
-        try {
-            //const registerData = {username: username, email: email, password: password, location: location}
-            const resp = await axios.post({
+         axios({
+              method: "post",
               url: api_url,
-              data: registerData,
+              data: formData,
               headers: {
-                "content-type": "application/json",
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
                 "X-Requested-With": "XMLHttpRequest"
-    
-              }
-            });
-            console.log(resp.data);
-            } catch(error) {
-                console.log(error.response)
-            }  
-            // axios({
-            //   method: 'post',
-            //   url: '/user/12345',
-            //   data: {
-            //     firstName: 'Fred',
-            //     lastName: 'Flintstone'
-            //   }
-           // });
+              },
+            }).then(function(response) {
+                console.log(response);
+            }).catch(function(response) {
+                console.log(response)
+            }) 
     }
-  
+
     return (
         <>
         <Button onClick={handleOpen} sx={{mb:1}}>Register</Button>
@@ -82,9 +69,9 @@ const style = {
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} component="form">
+          aria-describedby="modal-modal-description">
+          <form onSubmit={handleSubmit}>
+          <Box sx={style}>
             <Typography variant='h6' component="h4">
                 Register
             </Typography>
@@ -93,6 +80,7 @@ const style = {
             id="username"
             name="username"
             label="Username"
+            value={username}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setUsername(e.target.value)}
@@ -103,6 +91,7 @@ const style = {
             name="password"
             label="Password"
             type="password"
+            value={password}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setPassword(e.target.value)}
@@ -112,6 +101,7 @@ const style = {
             name="repeatPassword"
             required
             label="Re-type Password"
+            value={repeatPassword}
             type="password"
             size='small'
             sx={{mb:1}}
@@ -123,6 +113,7 @@ const style = {
             required
             label="Email"
             type="email"
+            value={email}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setEmail(e.target.value)}
@@ -131,6 +122,7 @@ const style = {
             id="location"
             name="location"
             required
+            value={location}
             label="Location"
             size='small'
             sx={{mb:1}}
@@ -138,6 +130,7 @@ const style = {
           />
           <Button type='button' variant='contained' onClick={handleSubmit}>Register</Button>
           </Box>
+          </form>
         </Modal>
         </>
     );

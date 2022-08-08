@@ -7,13 +7,8 @@
 // import Typography from "@mui/material/Typography";
 // import Box from "@mui/material/Box";
 // import TextField from "@mui/material/TextField"
-// import Modal from "@mui/material/Modal";
-// import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
-// import TextField from "@mui/material/TextField"
 // import FormControl from "@mui/material/FormControl"
 // import MenuItem from "@mui/material/MenuItem"
-// import Box from '@mui/material/Box';
 // import InputLabel from '@mui/material/InputLabel';
 // import OutlinedInput from '@mui/material/OutlinedInput';
 // import Select from '@mui/material/Select';
@@ -37,24 +32,20 @@
 //     const handleOpen = () => setOpen(true);
 //     const handleClose = () => setOpen(false);
 //     const [itemName, setItemName] = useState('')
-//     const [email, setEmail ] = useState('')
-//     const [password, setPassword] = useState('')
-//     const [location, setLocation] = useState('')
-//     const [repeatPassword, setRepeatPassword] = useState('')
     
 //     //Add heroku endpoint 
 //     const url = ''
 
 
-//     const handleSubmit = async (e) => {
-//         e.preventDefault()
-//         try {
-//             const resp = await axios.post(url, {username: username, email: email, password: password, location: location});
-//             console.log(resp.data);
-//             } catch(error) {
-//                 console.log(error.response)
-//             }  
-//     }
+//     // const handleSubmit = async (e) => {
+//     //     e.preventDefault()
+//     //     try {
+//     //         const resp = await axios.post(url, {username: username, email: email, password: password, location: location});
+//     //         console.log(resp.data);
+//     //         } catch(error) {
+//     //             console.log(error.response)
+//     //         }  
+//     // }
   
 //     return (
 //         <>
@@ -100,7 +91,7 @@
 //             <Typography variant='h6' component="h4">
 //                 Add New Item
 //             </Typography>
-//             <TextField 
+//             {/* <TextField 
 //             required
 //             id="itemName"
 //             name="itemName"
@@ -147,7 +138,7 @@
 //             size='small'
 //             sx={{mb:1}}
 //             onChange={(e) => setLocation(e.target.value)}
-//           />
+//           /> */}
 //           <Button variant='contained' onClick={handleSubmit}>Add image</Button>
 //           <Button variant='contained' onClick={handleSubmit}>Submit</Button>
 //           </Box>
