@@ -1,14 +1,15 @@
-import {Login, Register} from '../../Components'
+import React from "react";
+import Listings from "../../Components/Listings";
 
+function HomePage() {
+  return (
+    <div>
+      HomePage
+      <h1>listings component:</h1>
+      <Listings />
+    </div>
+  );
+}
 
-const Homepage = () => {
-    return (
-        <>
-        <h1>Homepage</h1>
-        <Login/>
-        <Register/>
-        </>
-        
-    )}
+export default HomePage;
 
-export default Homepage
