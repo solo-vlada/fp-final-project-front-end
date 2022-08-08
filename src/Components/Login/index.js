@@ -31,7 +31,8 @@ const style = {
     const [email, setEmail ] = useState('')
     const [password, setPassword] = useState('')
     // Add heroku endpoint
-    const url = 'https://concept-crew-server.herokuapp.com/'
+    const url = 'https://concept-crew-server.herokuapp.com/auth/login'
+    const dev_url = 'http://localhost:5000/auth/login'
     
     const handleUsername = (e) => {
         setUsername(e.target.value)
@@ -47,12 +48,23 @@ const style = {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try{
-        const resp = await axios.post(url, {username: username, email: email, password: password});
-        console.log(resp.data);
-        } catch(error) {
-            console.log(error.response)
-        }
+        const formData = {
+          username: username,
+          email: email,
+          password: password,
+      }
+      const headers = {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+      }
+
+      const response = axios.post(dev_url, formData, { headers })
+      response.then(res => {
+          console.log(res)
+      })
     }
 
     return (

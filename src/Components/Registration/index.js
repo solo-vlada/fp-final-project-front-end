@@ -33,50 +33,34 @@ const style = {
     const [repeatPassword, setRepeatPassword] = useState('')
     
     //Add heroku endpoint 
-    const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
+    const api_url = 'https://concept-crew-server.herokuapp.com/auth/users'
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        const registerData = {username: username, email: email, password: password, location: location}
-        console.log(registerData) 
-        // const options = {
+        console.log('submitted')
+        const formData = {
+            username: username,
+            email: email,
+            password: password,
+            location: location
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        }
 
-        //   headers: {
-        //     "content-type": "application/json",
-        //     "Access-Control-Allow-Origin": "*"
-
-        //   }
-
-        // }
-        try {
-            //const registerData = {username: username, email: email, password: password, location: location}
-            const resp = await axios.post({
-              url: api_url,
-              data: registerData,
-              headers: {
-                "content-type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "X-Requested-With": "XMLHttpRequest"
-    
-              }
-            });
-            console.log(resp.data);
-            } catch(error) {
-                console.log(error.response)
-            }  
-            // axios({
-            //   method: 'post',
-            //   url: '/user/12345',
-            //   data: {
-            //     firstName: 'Fred',
-            //     lastName: 'Flintstone'
-            //   }
-           // });
+        const response = axios.post(api_url, formData, { headers })
+        response.then(res => {
+            console.log(res)
+        })
     }
   
     return (
-        <>
+        <form>
         <Button onClick={handleOpen} sx={{mb:1}}>Register</Button>
         <Modal
           open={open}
@@ -139,6 +123,6 @@ const style = {
           <Button type='button' variant='contained' onClick={handleSubmit}>Register</Button>
           </Box>
         </Modal>
-        </>
+        </form>
     );
   }
