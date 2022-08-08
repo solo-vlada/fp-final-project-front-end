@@ -2,12 +2,13 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Nav } from "./Components";
 import { HomePage, MyListings } from "./Pages";
+import "./App.css";
 
 function App() {
   return (
     <div>
-      <h1>Let's begin!</h1>
-      <Nav />
+      <h1 className="title">Let's begin!</h1>
+      <Nav pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/mylistings" element={<MyListings />} />
