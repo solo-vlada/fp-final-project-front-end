@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as HiIcons from "react-icons/hi";
@@ -10,6 +10,7 @@ import { IconContext } from "react-icons";
 import "./burger.css";
 
 function Nav() {
+  const navigate = useNavigate();
   const [sidebar, setSidebar] = useState(false);
   const [inboxSidebar, setInboxSidebar] = useState(false);
 
@@ -34,7 +35,7 @@ function Nav() {
               onClick={showSidebar}
             />
           </Link>
-          <div className="nav-inbox" onClick={showInboxSidebar}>
+          <div className="nav-inbox" onClick={() => navigate('/messages')}>
             <div className="active-filter">
             <InboxIcon className="nav-inbox-icon"/>
             </div>
@@ -59,7 +60,7 @@ function Nav() {
             })}
           </ul>
         </nav>
-        <nav className={inboxSidebar ? "navbar-inbox active" : "navbar-inbox"}>
+        {/* <nav className={inboxSidebar ? "navbar-inbox active" : "navbar-inbox"}>
           <ul className="nav-menu-items" onClick={showInboxSidebar}>
             <li className="navbar-inbox-toggle">
               <Link to="#" className="nav-menu-bars">
@@ -68,7 +69,7 @@ function Nav() {
             </li>
             <BurgerInbox />
           </ul>
-        </nav>
+        </nav> */}
       </IconContext.Provider>
     </div>
   );
