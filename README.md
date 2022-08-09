@@ -8,6 +8,7 @@ Commands to set up a React-Redux Toolkit  app with Material UI
 4. npm i axios
 5. npm install @mui/material @emotion/react @emotion/styled 
 6. npm install @mui/icons-material
+7. npm i react-lightbox-pack - for react lightbox
 
 
 Usage
