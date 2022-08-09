@@ -7,8 +7,8 @@ import "./App.css";
 function App() {
   return (
     <div>
-      <h1 className="title">Let's begin!</h1>
       <Nav pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
+      <h1 className="title">Let's begin!</h1>
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/mylistings" element={<MyListings />} />
