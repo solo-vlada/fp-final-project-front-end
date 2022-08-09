@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { HomePage, MyListings } from "../../Pages";
-import { slide as Menu } from "react-burger-menu";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
-import "./burger.css";
 import { IconContext } from "react-icons";
+import "./burger.css";
 
 function Nav() {
   const [sidebar, setSidebar] = useState(false);
@@ -18,27 +16,14 @@ function Nav() {
   return (
     <div>
       <IconContext.Provider value={{ color: "#fff" }}>
-        {/* <h1>Borgir</h1>
-      <nav>
-        <Link to="home">Home</Link>
-        <br />
-        <Link to="mylistings">My Listings</Link>
-      </nav> */}
-        {/* <Menu>
-        <a className="menu-item" href="/">
-          Home
-        </a>
-        <Link className="menu-item" to="home">
-          Home
-        </Link>
-        <Link className="menu-item" to="mylistings">
-          My Listings
-        </Link>
-      </Menu> */}
-
         <div className="navbar">
           <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSidebar} />
+            {/* <FaIcons.FaBars onClick={showSidebar} /> */}
+            <img
+              src="https://static1.personality-database.com/profile_images/90b97eb971164bc3a6fc41f63226a92a.png"
+              className="nav-avatar"
+              onClick={showSidebar}
+            />
           </Link>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>

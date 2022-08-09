@@ -13,6 +13,7 @@
 
 .home,
 .mylistings,
+.messages,
 .settings {
   display: flex;
   height: 90vh;
