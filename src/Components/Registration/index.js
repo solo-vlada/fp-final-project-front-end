@@ -45,6 +45,7 @@ const style = {
             password: password,
             location: location
         }
+        console.log(formData)
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -53,7 +54,7 @@ const style = {
             'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
         }
 
-        const response = axios.post(api_url, formData, { headers })
+        const response = axios.post(dev_url, formData, { headers })
         response.then(res => {
             console.log(res)
         })

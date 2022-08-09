@@ -33,33 +33,66 @@ export default function AddNewItem() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [description, setDescription] = useState('')
+    const [itemName, setItemName] = useState('')
     const [size, setSize] = useState('')
     const[category, setCategory] = useState('')
     
     //Add heroku endpoint 
     const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
-    const dev_url = 'http://localhost:5050/'
+    const dev_url = 'http://localhost:5050/clothing'
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('submitted')
-        const formData = {
-            size: size,
-            category: category,
-            description: description,
-        }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-        }
+        
+        // const formData = {
+        //   item_name: itemName,
+        //   size: size,
+        //   category: category,
+        //   description: description,
+        // }
+        // console.log(formData)
+        // const headers = {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Access-Control-Allow-Methods': 'GET, POST',
+        //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        // }
 
-        const response = axios.post(dev_url, formData, { headers })
-        response.then(res => {
-            console.log(res)
-        })
+        // const response = axios.post(dev_url, formData, { headers })
+        // response.then(res => {
+        //     console.log(res)
+        // })
+        const stored_user_id = localStorage.getItem('shopping-user-id')
+        const options = {
+          method: 'POST',
+          url: 'http://localhost:5050/new-listing',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            Authorization: 'Basic Og=='
+          },
+          data: {
+            item_name: itemName,
+            item_size: size,
+            item_cat: category,
+            item_desc: description,
+            item_user_id: stored_user_id,
+            item_images: 'images go here'
+          }
+        };
+        
+        axios.request(options).then(function (response) {
+          console.log(response.data);
+          handleClose();
+        }).catch(function (error) {
+          console.error(error);
+        });
+        setDescription('')
+        setItemName('')
+        setSize('')
+        setCategory('')
     }
   
     return (
@@ -75,6 +108,17 @@ export default function AddNewItem() {
             <Typography variant='h6' component="h4">
                 Add New Item
             </Typography>
+            <FormControl>
+                <TextField 
+                    id="item_name"
+                    name="item_name"
+                    label="item name"
+                    value={itemName}
+                    size='small'
+                    sx={{my:1}}
+                    onChange={(e) => setItemName(e.target.value)}
+            />
+            </FormControl>
              <FormControl required size='small'  sx={{ my:1 }}>
               <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
               <Select
