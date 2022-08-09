@@ -36,17 +36,6 @@ const style = {
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
     const dev_url = 'http://localhost:5050/auth/login'
     
-    // const handleUsername = (e) => {
-    //     setUsername(e.target.value)
-    // }
-
-    // const handlePassword = (e) => {
-    //     setPassword(e.target.value)
-    // }
-
-    // const handleEmail = (e) => {
-    //     setEmail(e.target.value)
-    // }
 
     const handleSubmit = (e) => {
         e.preventDefault()
