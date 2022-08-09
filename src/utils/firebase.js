@@ -31,7 +31,7 @@ const metadata = {
 export const uploadImage = (file, uid, listingId) => {
   const storageImageRef = ref(
     storage,
-    `/files/${uid}/listings/${listingId}/${file}`
+    `/files/${uid}/listings/${listingId}/${file.name}`
   );
   return uploadBytesResumable(storageImageRef, file, metadata)
     .then((uploadTaskSnapshot) => {
