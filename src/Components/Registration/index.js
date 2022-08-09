@@ -33,8 +33,8 @@ const style = {
     const [repeatPassword, setRepeatPassword] = useState('')
     
     //Add heroku endpoint 
-    const api_url = 'https://concept-crew-server.herokuapp.com/auth/users'
-
+    const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
+    const dev_url = 'http://localhost:5050/auth/register'
 
     const handleSubmit = (e) => {
         e.preventDefault()
