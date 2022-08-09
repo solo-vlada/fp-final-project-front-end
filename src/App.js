@@ -6,7 +6,6 @@ import { HomePage, MyListings, Registration } from "./Pages";
 function App() {
   return (
     <div>
-      <h1>Let's begin!</h1>
       {/* <Nav /> */}
       <Routes>
         <Route path="/" element={<Registration/>}/>
