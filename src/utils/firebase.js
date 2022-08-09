@@ -1,9 +1,12 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
-// Your web app's Firebase configuration
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyDXjrWB7NVMwrxe-q7yViuL3ZJ5wVfzEps",
   authDomain: "lap4-3fe21.firebaseapp.com",
@@ -15,3 +18,28 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Storage and get a reference to the service
+const storage = getStorage(app);
+
+// Points to the root reference
+const storageRef = ref(storage);
+const metadata = {
+  contentType: "image/jpeg",
+};
+
+export const uploadImage = (file, uid, listingId) => {
+  const storageImageRef = ref(
+    storage,
+    `/files/${uid}/listings/${listingId}/${file}`
+  );
+  return uploadBytesResumable(storageImageRef, file, metadata)
+    .then((uploadTaskSnapshot) => {
+      return getDownloadURL(uploadTaskSnapshot.ref).then((downloadURL) => {
+        return downloadURL;
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
