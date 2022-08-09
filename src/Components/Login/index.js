@@ -49,6 +49,7 @@ const style = {
         e.preventDefault()
         try{
         const resp = await axios.post(url, {username: username, email: email, password: password});
+        console.log(username, email, password);
         console.log(resp.data);
         } catch(error) {
             console.log(error.response)
@@ -64,7 +65,7 @@ const style = {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-        <form>
+        <form onSubmit={handleSubmit}>
           <Box sx={style}>
             <Typography variant='h6' component="h4" sx={{mb:1}}>
                 Login
@@ -98,7 +99,7 @@ const style = {
             sx={{mb:1}}
             onChange={handleEmail}
           />
-          <Button variant='contained' onClick={handleSubmit}>Login</Button>
+          <Button type="submit" variant='contained'>Login</Button>
           </Box>
         </form>
         </Modal>

@@ -86,8 +86,8 @@ const style = {
             onChange={(e) => setUsername(e.target.value)}
           />
             <TextField
-            id="password"
             required
+            id="password"
             name="password"
             label="Password"
             type="password"
@@ -128,7 +128,7 @@ const style = {
             sx={{mb:1}}
             onChange={(e) => setLocation(e.target.value)}
           />
-          <Button type='button' variant='contained' onClick={handleSubmit}>Register</Button>
+          <Button type='submit' variant='contained'>Register</Button>
           </Box>
           </form>
         </Modal>
