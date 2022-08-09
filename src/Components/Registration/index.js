@@ -34,36 +34,33 @@ const style = {
     
     //Add heroku endpoint 
     const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
-
+    const dev_url = 'http://localhost:5050/auth/register'
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const formData = new FormData();
+        console.log('submitted')
+        const formData = {
+            username: username,
+            email: email,
+            password: password,
+            location: location
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        }
 
-        formData.append("username", username );
-        formData.append("email", email);
-        formData.append("password", password);
-        formData.append("location", location);
-        console.log(...formData);
-
-         axios({
-              method: "post",
-              url: api_url,
-              data: formData,
-              headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "X-Requested-With": "XMLHttpRequest"
-              },
-            }).then(function(response) {
-                console.log(response);
-            }).catch(function(response) {
-                console.log(response)
-            }) 
+        const response = axios.post(api_url, formData, { headers })
+        response.then(res => {
+            console.log(res)
+        })
     }
 
     return (
-        <>
+        <form>
         <Button onClick={handleOpen} sx={{mb:1}}>Register</Button>
         <Modal
           open={open}
@@ -132,6 +129,6 @@ const style = {
           </Box>
           </form>
         </Modal>
-        </>
+        </form>
     );
   }
