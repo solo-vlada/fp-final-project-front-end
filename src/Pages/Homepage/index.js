@@ -1,14 +1,14 @@
+import { Container, Typography } from "@mui/material";
 import React from "react";
 import {Listings, BottomNav} from "../../Components";
 
 function HomePage() {
   return (
-    <div>
-      HomePage
-      <h1>listings component:</h1>
+    <Container >
+      <Typography component={"h1"} variant={'h4'} align="center" marginY= '10px'>Items available in your area</Typography>
       <Listings />
       <BottomNav />
-    </div>
+    </Container>
   );
 }
 

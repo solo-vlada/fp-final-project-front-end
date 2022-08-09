@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <Nav pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
-      <h1 className="title">Let's begin!</h1>
+      <h1 className="title"></h1>
       <Routes>
         <Route path="/" element={<Registration/>}/>
         <Route path="/home" element={<HomePage />} />
