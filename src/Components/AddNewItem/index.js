@@ -124,7 +124,7 @@ export default function AddNewItem() {
                 <TextField 
                     id="item_name"
                     name="item_name"
-                    label="item name"
+                    label="Item name"
                     value={itemName}
                     size='small'
                     sx={{my:1}}
@@ -145,7 +145,7 @@ export default function AddNewItem() {
                 <option value={"dress"}>Dress</option>
               </Select>
             </FormControl>
-            <FormControl required size='small' sx={{ my:1}}>
+            <FormControl  size='small' sx={{ my:1}}>
               <InputLabel required htmlFor="demo-dialog-native">Size</InputLabel>
               <Select
                 native
