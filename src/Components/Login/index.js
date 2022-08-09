@@ -32,7 +32,7 @@ const style = {
     const [password, setPassword] = useState('')
     // Add heroku endpoint
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
-    const dev_url = 'http://localhost:5000/auth/login'
+    const dev_url = 'http://localhost:5050/auth/login'
     
     const handleUsername = (e) => {
         setUsername(e.target.value)
@@ -51,7 +51,6 @@ const style = {
         
         const formData = {
           username: username,
-          email: email,
           password: password,
       }
       const headers = {
