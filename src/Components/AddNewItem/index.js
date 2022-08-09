@@ -114,72 +114,71 @@ export default function AddNewItem() {
 
     console.log(imageUpload);
   };
-
-  return (
-    <>
-      <AddCircleIcon onClick={handleOpen} fontSize="large" />
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style} component="form">
-          <Typography variant="h6" component="h4">
-            Add New Item
-          </Typography>
-          <FormControl>
-            <TextField
-              id="item_name"
-              name="item_name"
-              label="item name"
-              value={itemName}
-              size="small"
-              sx={{ my: 1 }}
-              onChange={(e) => setItemName(e.target.value)}
+  
+    return (
+        <>
+       <AddCircleIcon onClick={handleOpen} fontSize="large" />
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style} component="form">
+            <Typography variant='h6' component="h4">
+                Add New Item
+            </Typography>
+            <FormControl>
+                <TextField 
+                    id="item_name"
+                    name="item_name"
+                    label="Item name"
+                    value={itemName}
+                    size='small'
+                    sx={{my:1}}
+                    onChange={(e) => setItemName(e.target.value)}
             />
-          </FormControl>
-          <FormControl required size="small" sx={{ my: 1 }}>
-            <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
-            <Select
-              native
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              input={<OutlinedInput label="Category" id="demo-dialog-native" />}
-            >
-              <option aria-label="None" value="" />
-              <option value={"shirt"}>Shirt</option>
-              <option value={"skirt"}>Skirt</option>
-              <option value={"dress"}>Dress</option>
-            </Select>
-          </FormControl>
-          <FormControl required size="small" sx={{ my: 1 }}>
-            <InputLabel required htmlFor="demo-dialog-native">
-              Size
-            </InputLabel>
-            <Select
-              native
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-              input={<OutlinedInput label="Size" id="demo-dialog-native" />}
-            >
-              <option aria-label="None" value="" />
-              <option value={"small"}>Small</option>
-              <option value={"medium"}>Medium</option>
-              <option value={"large"}>Large</option>
-            </Select>
-          </FormControl>
-          <FormControl>
-            <TextField
-              id="description"
-              name="description"
-              label="Description"
-              value={description}
-              multiline
-              maxRows={3}
-              size="small"
-              sx={{ my: 1 }}
-              onChange={(e) => setDescription(e.target.value)}
+            </FormControl>
+             <FormControl required size='small'  sx={{ my:1 }}>
+              <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
+              <Select
+                native
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                input={<OutlinedInput label="Category" id="demo-dialog-native" />}
+              >
+                <option aria-label="None" value="" />
+                <option value={"shirt"}>Shirt</option>
+                <option value={"skirt"}>Skirt</option>
+                <option value={"dress"}>Dress</option>
+              </Select>
+            </FormControl>
+            <FormControl  size='small' sx={{ my:1}}>
+              <InputLabel required htmlFor="demo-dialog-native">Size</InputLabel>
+              <Select
+                native
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
+                input={<OutlinedInput label="Size" id="demo-dialog-native" />}
+              >
+                <option aria-label="None" value="" />
+                <option value={"small"}>Small</option>
+                <option value={"medium"}>Medium</option>
+                <option value={"large"}>Large</option>
+              </Select>
+            </FormControl>
+            <FormControl>
+                <TextField 
+                    id="description"
+                    name="description"
+                    label="Description"
+                    value={description}
+                    multiline
+                    maxRows={3}
+                    size='small'
+                    sx={{my:1}}
+                    onChange={(e) => setDescription(e.target.value)}
+
             />
           </FormControl>
           <Box
