@@ -68,7 +68,7 @@ export default function AddNewItem() {
   
     return (
         <>
-        <Button onClick={handleOpen} ><AddCircleIcon fontSize="large" /></Button>
+       <AddCircleIcon onClick={handleOpen} fontSize="large" />
         <Modal
           open={open}
           onClose={handleClose}
@@ -104,7 +104,7 @@ export default function AddNewItem() {
                 <option value={"dress"}>Dress</option>
               </Select>
             </FormControl>
-            <FormControl rquired size='small' sx={{ my:1}}>
+            <FormControl required size='small' sx={{ my:1}}>
               <InputLabel required htmlFor="demo-dialog-native">Size</InputLabel>
               <Select
                 native
