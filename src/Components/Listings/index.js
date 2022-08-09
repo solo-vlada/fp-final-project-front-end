@@ -123,19 +123,50 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Container from '@mui/material/Container'
-import {LightBox} from 'react-lightbox-pack'
-import "react-lightbox-pack/dist/index.css";
-import { isContentEditable } from '@testing-library/user-event/dist/utils';
+import Lightbox from '../Lightbox';
 
 
 export default function Listings() {
-  const [toggle, setToggle] = useState(false);
-  const [sIndex, setSIndex] = useState(0);
+  const [clickedImg, setClickedImg] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   //Handle lightboxes
-  const lightBoxHandler = (state,sIndex) => {
-    setToggle(state);
-    setSIndex(sIndex);
+  const lightBoxHandler = (item, index) => {
+    setCurrentIndex(index);
+    setClickedImg(item.img);
+  }
+
+  const handleRotationRight= () => {
+    const totalLength = itemData.length;
+    if(currentIndex +1 >= totalLength){
+      setCurrentIndex(0)
+      const newUrl= itemData[0].img;
+      setClickedImg(newUrl)
+      return;
+    }
+    const newIndex = currentIndex + 1;
+    const newUrl = itemData.filter((item) => {
+      return itemData.indexOf(item) === newIndex;
+    });
+    const newItem = newUrl[0].img;
+    setClickedImg(newItem);
+    setCurrentIndex(newIndex);
+  }
+
+  const handleRotationLeft = () => {
+    const totalLength = itemData.length;
+    if(currentIndex === 0){
+      setCurrentIndex(totalLength-1);
+      const newUrl = itemData[totalLength -1].img;
+      setClickedImg(newUrl)
+    }
+    const newIndex = currentIndex - 1;
+    const newUrl = itemData.filter((item) => {
+      return itemData.indexOf(item) === newIndex;
+    });
+    const newItem = newUrl[0].img;
+    setClickedImg(newItem);
+    setCurrentIndex(newIndex);
   }
 
   return (
@@ -146,7 +177,7 @@ export default function Listings() {
       }}>
         {itemData.map((item, index) => (
           <>
-          <ImageListItem >
+          <ImageListItem key={index} >
             <img
               key={item.id}
               src={item.img}
@@ -154,27 +185,16 @@ export default function Listings() {
               alt={item.title}
               loading="lazy"
               onClick={() => {
-                lightBoxHandler(true, index)
+                lightBoxHandler(item, index)
               }}
             />
           <ImageListItemBar position="below" title={item.author} />
           </ImageListItem>
-       
-                <LightBox
-                state={toggle}
-                event={lightBoxHandler}
-                data={itemData}
-                imageWidth="60vw"
-                imageHeight="70vh"
-                thumbnailHeight={50}
-                thumbnailWidth={50}
-                setImageIndex={setSIndex}
-                imageIndex={sIndex}
-              />
-            </>
+
+          </>
 
         ))}
-
+        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft}/>}
       </ImageList>
       
     </Container>
