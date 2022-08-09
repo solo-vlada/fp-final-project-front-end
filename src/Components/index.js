@@ -7,3 +7,4 @@ export {default as AddNewItem } from "./AddNewItem";
 export {default as BottomNav} from "./BottomNavigation"
 export {default as MessagesInbox} from "./MessagesInbox"
 export {default as Lightbox} from "./Lightbox"
+export {default as Footer} from "./Footer"

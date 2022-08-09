@@ -8,7 +8,7 @@ export default function MessageInbox() {
   return (
     <>
         <h1 className='messageinbox-header'>Current Offers</h1>
-        <MessagesInbox />
+        <MessagesInbox /> 
         <BottomNav />
     </>
   )

@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -62,7 +64,23 @@ const style = {
 
     return (
         <form>
-        <Button onClick={handleOpen} sx={{mb:1}}>Register</Button>
+        <Button
+          onClick={handleOpen}
+          sx={{mb:1}}
+          css={{
+            width: '150px',
+            backgroundColor: '#086788',
+            borderRadius: '10px',
+            margin: 0,
+            border: '2px solid transparent',
+            color: 'white',
+            '&:hover': {
+              border: '2px solid #086788',
+              color: '#086788',
+            }
+          }}>
+            Register
+        </Button>
         <Modal
           open={open}
           onClose={handleClose}
