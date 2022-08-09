@@ -45,25 +45,54 @@ export default function AddNewItem() {
         e.preventDefault()
         console.log('submitted')
         
-        const formData = {
-          item_name: itemName,
-          size: size,
-          category: category,
-          description: description,
-        }
-        console.log(formData)
-        const headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST',
-            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-        }
+        // const formData = {
+        //   item_name: itemName,
+        //   size: size,
+        //   category: category,
+        //   description: description,
+        // }
+        // console.log(formData)
+        // const headers = {
+        //     'Content-Type': 'application/json',
+        //     'Accept': 'application/json',
+        //     'Access-Control-Allow-Origin': '*',
+        //     'Access-Control-Allow-Methods': 'GET, POST',
+        //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        // }
 
-        const response = axios.post(dev_url, formData, { headers })
-        response.then(res => {
-            console.log(res)
-        })
+        // const response = axios.post(dev_url, formData, { headers })
+        // response.then(res => {
+        //     console.log(res)
+        // })
+        const stored_user_id = localStorage.getItem('shopping-user-id')
+        const options = {
+          method: 'POST',
+          url: 'http://localhost:5050/new-listing',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            Authorization: 'Basic Og=='
+          },
+          data: {
+            item_name: itemName,
+            item_size: size,
+            item_cat: category,
+            item_desc: description,
+            item_user_id: stored_user_id,
+            item_images: 'images go here'
+          }
+        };
+        
+        axios.request(options).then(function (response) {
+          console.log(response.data);
+          handleClose();
+        }).catch(function (error) {
+          console.error(error);
+        });
+        setDescription('')
+        setItemName('')
+        setSize('')
+        setCategory('')
     }
   
     return (

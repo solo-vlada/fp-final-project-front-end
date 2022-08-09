@@ -21,6 +21,7 @@ function Nav() {
             {/* <FaIcons.FaBars onClick={showSidebar} /> */}
             <img
               src="https://static1.personality-database.com/profile_images/90b97eb971164bc3a6fc41f63226a92a.png"
+              alt="avatar"
               className="nav-avatar"
               onClick={showSidebar}
             />

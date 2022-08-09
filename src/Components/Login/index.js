@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"
+import { useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -24,6 +25,7 @@ const style = {
   };
   
   export default function Login() {
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -46,25 +48,33 @@ const style = {
     //     setEmail(e.target.value)
     // }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        
-        const formData = {
-          username: username,
-          password: password,
-      }
-      const headers = {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-      }
 
-      const response = axios.post(dev_url, formData, { headers })
-      response.then(res => {
-          console.log(res)
-      })
+      const options = {
+        method: 'POST',
+        url: 'http://localhost:5050/auth/login',
+        auth: { username: username, password: password },
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          Authorization: 'Basic c2lnbDoxMjM0'
+        },
+        data: {}
+      };
+      
+      axios.request(options).then(function (response) {
+        console.log(response.data)
+        window.localStorage.setItem('shopping-access-token', response.data.token[0]);
+        window.localStorage.setItem('shopping-user-id', response.data.token[1].user_id);
+        window.localStorage.setItem('shopping-username', response.data.token[1].username);
+        if (response.status === 200) {
+          navigate('/mylistings')
+        }
+      }).catch(function (error) {
+        console.error(error);
+      });
+      
     }
 
     return (
@@ -86,7 +96,6 @@ const style = {
             name="username"
             id="username"
             label="Username"
-            value={username}
             size='small'
             value={username}
             sx={{mb:1}}
@@ -107,7 +116,7 @@ const style = {
                 setPassword(e.target.value)
             }}
           />
-          <TextField
+          {/* <TextField
             id="email"
             name="email"
             required
@@ -119,7 +128,7 @@ const style = {
             onChange={(e) => {
                 setEmail(e.target.value)
             }}
-          />
+          /> */}
           <Button type="submit" variant='contained'>Login</Button>
           </Box>
         </form>

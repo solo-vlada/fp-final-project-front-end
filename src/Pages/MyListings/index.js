@@ -1,5 +1,5 @@
 import React from "react";
-import { MyListingsComp } from "../../Components";
+import { MyListingsComp, BottomNav } from "../../Components";
 
 function MyListings() {
   return (
@@ -7,6 +7,7 @@ function MyListings() {
       MyListings
       <h1>my old clothes</h1>
       <MyListingsComp />
+      <BottomNav />
     </div>
   );
 }

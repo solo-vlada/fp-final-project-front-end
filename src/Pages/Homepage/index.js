@@ -1,5 +1,5 @@
 import React from "react";
-import Listings from "../../Components/Listings";
+import {Listings, BottomNav} from "../../Components";
 
 function HomePage() {
   return (
@@ -7,6 +7,7 @@ function HomePage() {
       HomePage
       <h1>listings component:</h1>
       <Listings />
+      <BottomNav />
     </div>
   );
 }
