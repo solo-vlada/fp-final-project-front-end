@@ -48,6 +48,7 @@ const style = {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        
         const formData = {
           username: username,
           email: email,
@@ -76,7 +77,7 @@ const style = {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-        <form>
+        <form onSubmit={handleSubmit}>
           <Box sx={style}>
             <Typography variant='h6' component="h4" sx={{mb:1}}>
                 Login
@@ -110,7 +111,7 @@ const style = {
             sx={{mb:1}}
             onChange={handleEmail}
           />
-          <Button variant='contained' onClick={handleSubmit}>Login</Button>
+          <Button type="submit" variant='contained'>Login</Button>
           </Box>
         </form>
         </Modal>

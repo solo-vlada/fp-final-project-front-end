@@ -58,7 +58,7 @@ const style = {
             console.log(res)
         })
     }
-  
+
     return (
         <form>
         <Button onClick={handleOpen} sx={{mb:1}}>Register</Button>
@@ -66,9 +66,9 @@ const style = {
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} component="form">
+          aria-describedby="modal-modal-description">
+          <form onSubmit={handleSubmit}>
+          <Box sx={style}>
             <Typography variant='h6' component="h4">
                 Register
             </Typography>
@@ -77,16 +77,18 @@ const style = {
             id="username"
             name="username"
             label="Username"
+            value={username}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setUsername(e.target.value)}
           />
             <TextField
-            id="password"
             required
+            id="password"
             name="password"
             label="Password"
             type="password"
+            value={password}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setPassword(e.target.value)}
@@ -96,6 +98,7 @@ const style = {
             name="repeatPassword"
             required
             label="Re-type Password"
+            value={repeatPassword}
             type="password"
             size='small'
             sx={{mb:1}}
@@ -107,6 +110,7 @@ const style = {
             required
             label="Email"
             type="email"
+            value={email}
             size='small'
             sx={{mb:1}}
             onChange={(e) => setEmail(e.target.value)}
@@ -115,13 +119,15 @@ const style = {
             id="location"
             name="location"
             required
+            value={location}
             label="Location"
             size='small'
             sx={{mb:1}}
             onChange={(e) => setLocation(e.target.value)}
           />
-          <Button type='button' variant='contained' onClick={handleSubmit}>Register</Button>
+          <Button type='submit' variant='contained'>Register</Button>
           </Box>
+          </form>
         </Modal>
         </form>
     );
