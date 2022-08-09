@@ -1,5 +1,13 @@
+:root{
+  --nav-blue: #086788;
+  --papaya: rgb(239, 238, 235);
+}
+
+body{
+  background-color: var(--papaya);
+}
 .navbar {
-  background-color: pink;
+  background-color: var(--nav-blue);
   height: 80px;
   display: flex;
   justify-content: start;
@@ -18,7 +26,8 @@
 }
 
 .nav-menu {
-  background-color: pink;
+  z-index:1;
+  background-color: var(--nav-blue);
   width: 250px;
   height: 100vh;
   display: flex;
@@ -64,7 +73,7 @@
 }
 
 .navbar-toggle {
-  background-color: pink;
+  background-color: var(--nav-blue);
   width: 100%;
   height: 80px;
   display: flex;
