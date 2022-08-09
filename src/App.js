@@ -2,11 +2,14 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Nav } from "./Components";
 import { HomePage, MyListings, Registration } from "./Pages";
+import "./App.css";
+
 
 function App() {
   return (
     <div>
-      {/* <Nav /> */}
+      <Nav pageWrapId={"page-wrap"} outerContainerId={"outer-container"} />
+      <h1 className="title">Let's begin!</h1>
       <Routes>
         <Route path="/" element={<Registration/>}/>
         <Route path="/home" element={<HomePage />} />
