@@ -33,26 +33,30 @@ export default function AddNewItem() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [description, setDescription] = useState('')
+    const [itemName, setItemName] = useState('')
     const [size, setSize] = useState('')
     const[category, setCategory] = useState('')
     
     //Add heroku endpoint 
     const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
-    const dev_url = 'http://localhost:5050/'
+    const dev_url = 'http://localhost:5050/clothing'
 
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log('submitted')
+        
         const formData = {
-            size: size,
-            category: category,
-            description: description,
+          item_name: itemName,
+          size: size,
+          category: category,
+          description: description,
         }
+        console.log(formData)
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Methods': 'GET, POST',
             'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
         }
 
@@ -75,6 +79,17 @@ export default function AddNewItem() {
             <Typography variant='h6' component="h4">
                 Add New Item
             </Typography>
+            <FormControl>
+                <TextField 
+                    id="item_name"
+                    name="item_name"
+                    label="item name"
+                    value={itemName}
+                    size='small'
+                    sx={{my:1}}
+                    onChange={(e) => setItemName(e.target.value)}
+            />
+            </FormControl>
              <FormControl required size='small'  sx={{ my:1 }}>
               <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
               <Select

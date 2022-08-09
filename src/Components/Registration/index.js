@@ -45,6 +45,7 @@ const style = {
             password: password,
             location: location
         }
+        console.log(formData)
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

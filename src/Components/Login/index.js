@@ -86,6 +86,7 @@ const style = {
             name="username"
             id="username"
             label="Username"
+            value={username}
             size='small'
             sx={{mb:1}}
             onChange={handleUsername}
