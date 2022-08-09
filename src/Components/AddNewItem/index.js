@@ -31,77 +31,85 @@ const style = {
 };
 
 export default function AddNewItem() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [description, setDescription] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [size, setSize] = useState("");
+  const [category, setCategory] = useState("");
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageURL, setimageURL] = useState("");
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const [description, setDescription] = useState('')
-    const [itemName, setItemName] = useState('')
-    const [size, setSize] = useState('')
-    const[category, setCategory] = useState('')
-    const [imageUpload, setImageUpload] = useState(null);
-    //Add heroku endpoint 
-    const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
-    const dev_url = 'http://localhost:5050/clothing'
+  //Add heroku endpoint
+  const api_url = "https://concept-crew-server.herokuapp.com/auth/register";
+  const dev_url = "http://localhost:5050/clothing";
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log('submitted')
-        
-        // const formData = {
-        //   item_name: itemName,
-        //   size: size,
-        //   category: category,
-        //   description: description,
-        // }
-        // console.log(formData)
-        // const headers = {
-        //     'Content-Type': 'application/json',
-        //     'Accept': 'application/json',
-        //     'Access-Control-Allow-Origin': '*',
-        //     'Access-Control-Allow-Methods': 'GET, POST',
-        //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-        // }
+  const stored_user_id = localStorage.getItem("shopping-user-id");
 
-        // const response = axios.post(dev_url, formData, { headers })
-        // response.then(res => {
-        //     console.log(res)
-        // })
-        const stored_user_id = localStorage.getItem('shopping-user-id')
-        const options = {
-          method: 'POST',
-          url: 'http://localhost:5050/new-listing',
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            Authorization: 'Basic Og=='
-          },
-          data: {
-            item_name: itemName,
-            item_size: size,
-            item_cat: category,
-            item_desc: description,
-            item_user_id: stored_user_id,
-            item_images: 'images go here'
-          }
-        };
-        
-        axios.request(options).then(function (response) {
-          console.log(response.data);
-          handleClose();
-        }).catch(function (error) {
-          console.error(error);
-        });
-        setDescription('')
-        setItemName('')
-        setSize('')
-        setCategory('')
-    }
-    const handleImage = (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+    console.log(imageURL);
+    // const formData = {
+    //   item_name: itemName,
+    //   size: size,
+    //   category: category,
+    //   description: description,
+    // }
+    // console.log(formData)
+    // const headers = {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json',
+    //     'Access-Control-Allow-Origin': '*',
+    //     'Access-Control-Allow-Methods': 'GET, POST',
+    //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+    // }
+
+    // const response = axios.post(dev_url, formData, { headers })
+    // response.then(res => {
+    //     console.log(res)
+    // })
+
+    const options = {
+      method: "POST",
+      url: "http://localhost:5050/new-listing",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: "Basic Og==",
+      },
+      data: {
+        item_name: itemName,
+        item_size: size,
+        item_cat: category,
+        item_desc: description,
+        item_user_id: stored_user_id,
+        item_images: imageURL,
+      },
+    };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        handleClose();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    setDescription("");
+    setItemName("");
+    setSize("");
+    setCategory("");
+  };
+  const handleImage = (e) => {
     e.preventDefault();
     if (imageUpload == null) return;
-    uploadImage(imageUpload, 1, 21).then((downloadURL) => {
+    uploadImage(imageUpload, stored_user_id, itemName).then((downloadURL) => {
       console.log(downloadURL);
+      console.log(stored_user_id);
+      setimageURL(downloadURL);
     });
 
     console.log(imageUpload);
@@ -170,6 +178,7 @@ export default function AddNewItem() {
                     size='small'
                     sx={{my:1}}
                     onChange={(e) => setDescription(e.target.value)}
+
             />
           </FormControl>
           <Box
