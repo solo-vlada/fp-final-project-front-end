@@ -34,17 +34,17 @@ const style = {
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
     const dev_url = 'http://localhost:5000/auth/login'
     
-    const handleUsername = (e) => {
-        setUsername(e.target.value)
-    }
+    // const handleUsername = (e) => {
+    //     setUsername(e.target.value)
+    // }
 
-    const handlePassword = (e) => {
-        setPassword(e.target.value)
-    }
+    // const handlePassword = (e) => {
+    //     setPassword(e.target.value)
+    // }
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value)
-    }
+    // const handleEmail = (e) => {
+    //     setEmail(e.target.value)
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -88,8 +88,11 @@ const style = {
             id="username"
             label="Username"
             size='small'
+            value={username}
             sx={{mb:1}}
-            onChange={handleUsername}
+            onChange={(e) => {
+                setUsername(e.target.value)
+            }}
           />
             <TextField
             id="password"
@@ -98,8 +101,11 @@ const style = {
             label="Password"
             type="password"
             size='small'
+            value={password}
             sx={{mb:1}}
-            onChange={handlePassword}
+            onChange={(e) => {
+                setPassword(e.target.value)
+            }}
           />
           <TextField
             id="email"
@@ -108,8 +114,11 @@ const style = {
             label="Email"
             type="email"
             size='small'
+            value={email}
             sx={{mb:1}}
-            onChange={handleEmail}
+            onChange={(e) => {
+                setEmail(e.target.value)
+            }}
           />
           <Button type="submit" variant='contained'>Login</Button>
           </Box>
