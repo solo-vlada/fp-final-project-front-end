@@ -97,7 +97,7 @@ const style = {
             id="repeatPassword"
             name="repeatPassword"
             required
-            label="Re-type Password"
+            label="Re-enter password"
             value={repeatPassword}
             type="password"
             size='small'

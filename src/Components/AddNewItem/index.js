@@ -37,18 +37,30 @@ export default function AddNewItem() {
     const[category, setCategory] = useState('')
     
     //Add heroku endpoint 
-    const url = ''
+    const api_url = 'https://concept-crew-server.herokuapp.com/auth/register'
+    const dev_url = 'http://localhost:5050/'
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('submitted')
+        const formData = {
+            size: size,
+            category: category,
+            description: description,
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        }
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     try {
-    //         const resp = await axios.post(url, {username: username, email: email, password: password, location: location});
-    //         console.log(resp.data);
-    //         } catch(error) {
-    //             console.log(error.response)
-    //         }  
-    // }
+        const response = axios.post(dev_url, formData, { headers })
+        response.then(res => {
+            console.log(res)
+        })
+    }
   
     return (
         <>
@@ -110,7 +122,7 @@ export default function AddNewItem() {
             mt:1
             }}>
                 <Button type="submit" variant='contained' >Add image</Button>
-                <Button type="submit" variant='contained'>Submit</Button>
+                <Button type="submit" onClick={handleSubmit} variant='contained'>Submit</Button>
             </Box>
           </Box>
         </Modal>
