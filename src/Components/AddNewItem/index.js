@@ -42,38 +42,18 @@ export default function AddNewItem() {
   const [imageURL, setimageURL] = useState("");
 
   //Add heroku endpoint
-  const api_url = "https://concept-crew-server.herokuapp.com/auth/register";
+  const api_url = "https://concept-crew-server.herokuapp.com/new-listing";
   const dev_url = "http://localhost:5050/clothing";
 
   const stored_user_id = localStorage.getItem("shopping-user-id");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
-    console.log(imageURL);
-    // const formData = {
-    //   item_name: itemName,
-    //   size: size,
-    //   category: category,
-    //   description: description,
-    // }
-    // console.log(formData)
-    // const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET, POST',
-    //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-    // }
-
-    // const response = axios.post(dev_url, formData, { headers })
-    // response.then(res => {
-    //     console.log(res)
-    // })
+   
 
     const options = {
       method: "POST",
-      url: "http://localhost:5050/new-listing",
+      url: api_url,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -88,7 +68,7 @@ export default function AddNewItem() {
         item_images: imageURL,
       },
     };
-
+    console.log(options.data)
     axios
       .request(options)
       .then(function (response) {

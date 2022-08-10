@@ -37,12 +37,13 @@ const style = {
     const dev_url = 'http://localhost:5050/auth/login'
     
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
       const options = {
         method: 'POST',
-        url: 'http://localhost:5050/auth/login',
+        url: url,
         auth: { username: username, password: password },
         headers: {
           'Content-Type': 'application/json',
