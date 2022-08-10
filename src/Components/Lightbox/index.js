@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Paper, Typography } from "@mui/material";
 import Button from '@mui/material/Button'
 import { SwapItem } from "..";
+import {useState} from 'react'
 
 
 
@@ -24,19 +25,24 @@ const style = {
 
 export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, receiverItemId, receiverId}) {
 
+    const [isVisible, setIsVisible] = useState(false);
+    const [isShown, setIsShown] = useState(true);
+
     const handleClick = (e) => {
         if(e.target.classList.contains("dismiss")) {
             setClickedImg(null);
         }
     };
 
-    const handleSwap = (e) => {
-        e.preventDefault();
+    const handleSwap = () => {
+        setIsVisible(true)
+        setIsShown(false)
+        console.log(isVisible)
     }
 
     return (
     <>
-     <Paper sx={style} className="dismiss">
+     {isShown && <Paper sx={style} className="dismiss">
         <Box sx={{display:"flex", alignItems: "center", position:"relative"}}>
             <ArrowBackIosIcon sx={{ mr:1}} fontSize="large" onClick={handleRotationLeft}/>
             <Box>
@@ -45,7 +51,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button type="submit" onClick={handleSwap} variant="contained">
+                <Button className="dismiss" type="submit" onClick={handleSwap} variant="contained">
                         Swap
                 </Button>
                 </Box>
@@ -54,8 +60,8 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
             <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
-            <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />
-        </Paper>
+        </Paper> }
+        {isVisible && <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />}
         
     </>)
 
