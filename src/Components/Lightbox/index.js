@@ -29,7 +29,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
         }
     };
 
-    const handleDelete = (e) => {
+    const handleSwap = (e) => {
         e.preventDefault();
     }
 
@@ -44,7 +44,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button type="submit" onClick={handleDelete} variant="contained">
+                <Button type="submit" onClick={handleSwap} variant="contained">
                         Swap
                 </Button>
                 </Box>

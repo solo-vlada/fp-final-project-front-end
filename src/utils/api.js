@@ -15,10 +15,15 @@ export const getAllListings = (filter) => {
 };
 
 export const getMyListings = (id) => {
-  console.log("userID", id);
-
   return flaskDb.get(`?user=${id}`).then(({ data }) => {
     console.log(data);
     return data;
   });
 };
+
+export const deleteMyListing = (id) => {
+  return flaskDb.delete(`/delete/${id}`).then((response)=> {
+    console.log(response)
+    return response;
+  });
+}

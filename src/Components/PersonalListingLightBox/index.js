@@ -4,7 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CloseIcon from '@mui/icons-material/Close';
 import { Paper, Typography } from "@mui/material";
 import Button from '@mui/material/Button'
-
+import { deleteMyListing } from "../../utils/api";
 
 
 
@@ -22,7 +22,7 @@ const style = {
     p: 4,
   };
 
-export default function PersonalLightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size}) {
+export default function PersonalLightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, listingId}) {
 
     const handleClick = (e) => {
         if(e.target.classList.contains("dismiss")) {
@@ -30,8 +30,12 @@ export default function PersonalLightbox({clickedImg, handleRotationRight, setCl
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleDelete = (e) => {
         e.preventDefault();
+        deleteMyListing(listingId).then((response) => {
+            console.log(response);
+            setClickedImg(null);
+        });
     }
 
     return (
@@ -45,7 +49,7 @@ export default function PersonalLightbox({clickedImg, handleRotationRight, setCl
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button type="submit" onClick={handleSubmit} variant="contained">
+                <Button type="submit" onClick={handleDelete} variant="contained" >
                         Delete
                 </Button>
                 </Box>
@@ -53,7 +57,7 @@ export default function PersonalLightbox({clickedImg, handleRotationRight, setCl
             </Box>
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}}fontSize="large" className="dismiss" onClick={handleClick}/>
+            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}}fontSize="large"  className="dismiss" onClick={handleClick} />
         </Paper>
         
     </>)
