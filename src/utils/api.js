@@ -5,17 +5,18 @@ const flaskDb = axios.create({
   baseURL: "https://concept-crew-server.herokuapp.com",
 });
 
-export const getAllListings = () => {
-  // Replace endpoint with actual one from backend
-  return flaskDb.get("/").then(({ data }) => {
+export const getAllListings = (filter) => {
+  let path = "/";
+  if (filter) path += `?filter=${filter}`;
+  return flaskDb.get(path).then(({ data }) => {
     console.log(data);
     return data;
   });
 };
 
 export const getMyListings = (id) => {
-  console.log("userID",id)
-  // Replace endpoint with actual one from backend
+  console.log("userID", id);
+
   return flaskDb.get(`?user=${id}`).then(({ data }) => {
     console.log(data);
     return data;
