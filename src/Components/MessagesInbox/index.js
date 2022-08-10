@@ -8,15 +8,23 @@ export default function MessagesInbox() {
     const { id } = useParams();
     const user_id = localStorage.getItem('shopping-user-id');
 
+    // **************** NAVIGATE TO MESSAGE PAGE ****************
+
+    // handle click on message preview in inbox
     const handleClick = () => {
         navigate(`/messages/${id}`);
     }
 
+    // endpoints for getting messages
     const dev_url = `http://localhost:5050/auth/msg/${user_id}`
     const api_url = `https://concept-crew-server.herokuapp.com/auth/msg/${user_id}`
+
+    // ********************* GET ALL MESSAGES *********************
+
     useEffect(() => {
         const user_id = localStorage.getItem('shopping-user-id');
         console.log(user_id);
+
         if (!user_id) {
             navigate('/');
         } else {

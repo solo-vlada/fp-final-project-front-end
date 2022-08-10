@@ -15,8 +15,9 @@ function App() {
         <Route element={<Layout/>} >
           <Route path="/home" element={<HomePage />} />
           <Route path="/mylistings" element={<MyListings />} />
-          <Route path="/messages" element={<MessageInbox />} >
-            <Route path="/messages/:id" element={<MessagePage />} />
+          <Route path="/messages" >
+            <Route path="/messages/inbox" element={<MessageInbox />} />
+            <Route path="/messages/msg" element={<MessagePage />} />
           </Route>
         </Route>
       </Routes>
