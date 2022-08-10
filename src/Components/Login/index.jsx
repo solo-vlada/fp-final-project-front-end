@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 
 //MATERIAL UI 
@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"
 import { useNavigate } from 'react-router-dom';
+import { ApiContext } from '../../ApiContext';
+
 
 
 const style = {
@@ -34,6 +36,8 @@ const style = {
     const [username, setUsername] = useState('')
     const [email, setEmail ] = useState('')
     const [password, setPassword] = useState('')
+    const [messages, setMessages] = useContext(ApiContext)
+
     // Add heroku endpoint
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
     const dev_url = 'http://localhost:5050/auth/login'

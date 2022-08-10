@@ -10,17 +10,17 @@ function App() {
   return (
     <div>
       {/* <h1 className="title"></h1> */}
-      <Routes>
-        <Route path="/" element={<Registration/>}/>
-        <Route element={<Layout/>} >
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/mylistings" element={<MyListings />} />
-          <Route path="/messages" >
-            <Route path="/messages/inbox" element={<MessageInbox />} />
-            <Route path="/messages/msg" element={<MessagePage />} />
+        <Routes>
+          <Route path="/" element={<Registration/>}/>
+          <Route element={<Layout/>} >
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/mylistings" element={<MyListings />} />
+            <Route path="/messages" >
+              <Route path="/messages/inbox" element={<MessageInbox />} />
+              <Route path="/messages/msg" element={<MessagePage />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
     </div>
   );
 }

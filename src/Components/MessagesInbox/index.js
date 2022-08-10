@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import InboxListItems from '../InboxListItems';
+import { ApiContext } from '../../ApiContext';
 
 export default function MessagesInbox() {
     const navigate = useNavigate();
     const { id } = useParams();
+    const [myMessage, setMyMessage] = useContext(ApiContext);
     const user_id = localStorage.getItem('shopping-user-id');
 
+    let apiData = null;
     // **************** NAVIGATE TO MESSAGE PAGE ****************
 
     // handle click on message preview in inbox
@@ -19,96 +23,77 @@ export default function MessagesInbox() {
     const dev_url = `http://localhost:5050/auth/msg/${user_id}`
     const api_url = `https://concept-crew-server.herokuapp.com/auth/msg/${user_id}`
 
+    // console.log(message.Messages)
+
     // ********************* GET ALL MESSAGES *********************
 
     useEffect(() => {
-        const user_id = localStorage.getItem('shopping-user-id');
         console.log(user_id);
 
-        if (!user_id) {
-            navigate('/');
-        } else {
-            const headers = {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
+        const getMessages = async () => {
+            const user_id = localStorage.getItem('shopping-user-id')
+            if (!user_id) {
+                navigate('/');
+            } else {
+                const clientToken = localStorage.getItem('shopping-access-token');
+                const sender_id = localStorage.getItem('shopping-user-id');
+                console.log(clientToken);
+                const options = {
+                    method: 'GET',
+                    url: 'http://localhost:5050/auth/msg',
+                    headers: {
+                    'x-access-tokens': clientToken,
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                    },
+                    
+                };
+                
+                await axios.request(options).then(function (response) {
+                    console.log(`Data: ${JSON.stringify(response.data)}`);
+                    setMyMessage(response.data);
+                    // apiData = response.data
+                    console.log(myMessage);
+                }).catch(function (error) {
+                    console.error(error);
+                });
             }
-    
-            const response = axios.get(dev_url, { headers })
-            response.then(res => {
-                console.log(res)
-            })
         }
-    },[]);
+        getMessages();
+    }, [])
 
+    const allMsgs = () => {
+    const msgArray = myMessage.Messages;
+    for(let i = 0; i < msgArray.length; i++) {
+        let arr = [];
+        arr.push(msgArray[i]);
+        return arr;
+
+    }
+
+    }
   return (
     <div>
         <div className='inbox-container'>
-            <div onClick={handleClick} className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 1</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 2</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 3</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <div className='conversation-container'>
-                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                <div className='conversation-info'>
-                    <h3>Offer 4</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-            </div>
+                {/* <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/> */}
+                {/* {myMessage != null ? <h1>{myMessage.Messages[0].receiver_name}</h1> : <p>Loading...</p>} */}
+                {myMessage != null ?
+                        myMessage.Messages.map((message,index) => {
+                            return (
+                                <div onClick={handleClick} className='conversation-container'>
+                                <div key={index} className='conversation-info'>
+                                    <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
+                                    <h3 >{message.receiver_name}</h3>
+                                    <p>{message.message_text}</p>
+                                </div> 
+                                </div>
+                            )   
+                        }) 
+                    : <p>Loading...</p>}
+
+                {/* <h1>{apiData.Messages[0].sender}</h1> */}
+                
+
         </div>
     </div>
   )

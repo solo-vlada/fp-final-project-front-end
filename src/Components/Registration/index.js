@@ -60,6 +60,7 @@ const style = {
         response.then(res => {
             console.log(res)
         })
+        handleClose()
     }
 
     return (
