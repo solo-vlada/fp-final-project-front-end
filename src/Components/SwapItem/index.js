@@ -10,6 +10,7 @@ import Button from '@mui/material/Button'
 import Box from "@mui/material/Box"
 import {Link } from 'react-router-dom'
 import { Typography } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
@@ -22,7 +23,7 @@ export default function SwapItem({receiverId, receiverItemId}) {
   const [size, setSize] = useState('');
   const [id, setId] = useState('')
   const stored_user_id = localStorage.getItem("shopping-user-id");
-
+  const navigate = useNavigate();
   const api_url = "https://concept-crew-server.herokuapp.com/auth/create-swap";
 
   const clientTokens = localStorage.getItem("shopping-access-token");
@@ -72,15 +73,9 @@ useEffect(() => {
             .catch(function (error) {
               console.error(error);
             });
-
-
+            navigate("/messages")
   }
 
-// const userData = {
-//     proposer_item_id: id,
-//     receiver_item_id: receiverItemId,
-//     receiver: receiverId
-// }
 
 const style = {
     position: 'absolute',
