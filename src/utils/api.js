@@ -7,14 +7,15 @@ const flaskDb = axios.create({
 
 export const getAllListings = (filter) => {
   let path = "/";
-  if (filter) path += `?filter=${filter}`;
+  if (filter) path = `?category=${filter}`;
   return flaskDb.get(path).then(({ data }) => {
     console.log(data);
     return data;
   });
 };
 
-export const getMyListings = (id) => {
+export const getMyListings = (id, filter) => {
+  // &category=${filter}
   return flaskDb.get(`?user=${id}`).then(({ data }) => {
     console.log(data);
     return data;
@@ -22,8 +23,8 @@ export const getMyListings = (id) => {
 };
 
 export const deleteMyListing = (id) => {
-  return flaskDb.delete(`/delete/${id}`).then((response)=> {
-    console.log(response)
+  return flaskDb.delete(`/delete/${id}`).then((response) => {
+    console.log(response);
     return response;
   });
-}
+};
