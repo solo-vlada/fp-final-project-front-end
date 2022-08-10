@@ -13,9 +13,10 @@ export const getAllListings = () => {
   });
 };
 
-export const getMyListings = () => {
+export const getMyListings = (id) => {
+  console.log("userID",id)
   // Replace endpoint with actual one from backend
-  return flaskDb.get("/endpoint").then(({ data }) => {
+  return flaskDb.get(`?user=${id}`).then(({ data }) => {
     console.log(data);
     return data;
   });

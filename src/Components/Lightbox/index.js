@@ -1,6 +1,4 @@
-import Modal from "@mui/material/Modal"
 import Box from "@mui/material/Box"
-import Container from "@mui/material/Container"
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CloseIcon from '@mui/icons-material/Close';

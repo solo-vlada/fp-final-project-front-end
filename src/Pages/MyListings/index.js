@@ -4,8 +4,7 @@ import { MyListingsComp, BottomNav } from "../../Components";
 function MyListings() {
   return (
     <div>
-      MyListings
-      <h1>my old clothes</h1>
+      <h1>Your items</h1>
       <MyListingsComp />
       <BottomNav />
     </div>
