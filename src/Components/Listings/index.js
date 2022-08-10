@@ -18,8 +18,7 @@ export default function Listings() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [filter, setFilter] = useState("");
-  const [size, setSize] = useState('');
-
+  const [size, setSize] = useState("");
 
   //Get data
   useEffect(() => {
@@ -34,19 +33,17 @@ export default function Listings() {
     setCurrentIndex(index);
     setClickedImg(item.images);
 
-    setTitle(item.item_name)
-    setDescription(item.description)
-    setSize(item.size)
-
-  }
-
+    setTitle(item.item_name);
+    setDescription(item.description);
+    setSize(item.size);
+  };
 
   const handleRotationRight = () => {
     const totalLength = itemData.length;
 
-    if(currentIndex +1 >= totalLength){
-      setCurrentIndex(0)
-      const newUrl= itemData[0].images;
+    if (currentIndex + 1 >= totalLength) {
+      setCurrentIndex(0);
+      const newUrl = itemData[0].images;
       const newTitle = itemData[0].item_name;
       const newDescription = itemData[0].description;
       const newSize = itemData[0].size;
@@ -71,21 +68,20 @@ export default function Listings() {
     setTitle(newTitle);
     setDescription(newDescription);
     setSize(newSize);
-  }
+  };
 
   const handleRotationLeft = () => {
     const totalLength = itemData.length;
-    if(currentIndex === 0){
-      setCurrentIndex(totalLength-1);
-      const newUrl = itemData[totalLength -1].images;
-      const newTitle = itemData[totalLength -1].item_name;
-      const newDescription = itemData[totalLength -1].description;
-      const newSize = itemData[totalLength -1].size;
+    if (currentIndex === 0) {
+      setCurrentIndex(totalLength - 1);
+      const newUrl = itemData[totalLength - 1].images;
+      const newTitle = itemData[totalLength - 1].item_name;
+      const newDescription = itemData[totalLength - 1].description;
+      const newSize = itemData[totalLength - 1].size;
       setClickedImg(newUrl);
       setTitle(newTitle);
       setDescription(newDescription);
       setSize(newSize);
-
     }
     const newIndex = currentIndex - 1;
     const newUrl = itemData.filter((item) => {
@@ -101,8 +97,7 @@ export default function Listings() {
     setTitle(newTitle);
     setDescription(newDescription);
     setSize(newSize);
-  }
-
+  };
 
   return (
     <Container maxWidth="small" sx={{ overflowY: "scroll", my: 5 }}>
@@ -118,6 +113,7 @@ export default function Listings() {
           <option value={"shirt"}>Shirt</option>
           <option value={"skirt"}>Skirt</option>
           <option value={"dress"}>Dress</option>
+          <option value={"pants"}>Pants</option>
         </Select>
       </FormControl>
       <ImageList
@@ -145,10 +141,18 @@ export default function Listings() {
             </ImageListItem>
           </>
         ))}
-)}
-
-        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} size={size}/>}
-
+        )}
+        {clickedImg && (
+          <Lightbox
+            clickedImg={clickedImg}
+            handleRotationRight={handleRotationRight}
+            setClickedImg={setClickedImg}
+            handleRotationLeft={handleRotationLeft}
+            title={title}
+            description={description}
+            size={size}
+          />
+        )}
       </ImageList>
     </Container>
   );
