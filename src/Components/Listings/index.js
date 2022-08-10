@@ -8,6 +8,7 @@ import Lightbox from '../Lightbox';
 
 
 
+
 export default function Listings() {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
@@ -35,7 +36,7 @@ export default function Listings() {
 
   }
 
-  const handleRotationRight= () => {
+  const handleRotationRight = () => {
     const totalLength = itemData.length;
     if(currentIndex +1 >= totalLength){
       setCurrentIndex(0)
