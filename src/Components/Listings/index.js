@@ -15,7 +15,8 @@ export default function Listings() {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
-
+  const [receiverItemId, setReceiverItemId] = useState(null) 
+  const [receiverId, setReceiverId] = useState(null) 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [filter, setFilter] = useState("");
@@ -33,7 +34,8 @@ export default function Listings() {
   const lightBoxHandler = (item, index) => {
     setCurrentIndex(index);
     setClickedImg(item.images);
-
+    setReceiverId(item.user_id)
+    setReceiverItemId(item.id)
     setTitle(item.item_name);
     setDescription(item.description);
     setSize(item.size);
@@ -142,7 +144,6 @@ export default function Listings() {
             </ImageListItem>
           </>
         ))}
-        )}
         {clickedImg && (
           <Lightbox
             clickedImg={clickedImg}
@@ -152,6 +153,8 @@ export default function Listings() {
             title={title}
             description={description}
             size={size}
+            receiverItemId = {receiverItemId}
+            receiverId = {receiverId}
           />
         )}
       </ImageList>

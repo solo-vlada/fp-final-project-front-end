@@ -10,9 +10,10 @@ import Button from '@mui/material/Button'
 import Box from "@mui/material/Box"
 import {Link } from 'react-router-dom'
 import { Typography } from '@mui/material';
+import axios from 'axios';
 
 
-export default function ChooseSwapItem() {
+export default function SwapItem({receiverId, receiverItemId}) {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -22,6 +23,9 @@ export default function ChooseSwapItem() {
   const [id, setId] = useState('')
   const stored_user_id = localStorage.getItem("shopping-user-id");
 
+  const api_url = "https://concept-crew-server.herokuapp.com/auth/create-swap";
+
+  const clientTokens = localStorage.getItem("shopping-access-token");
 
 //Get data 
 useEffect(() => {
@@ -39,10 +43,44 @@ useEffect(() => {
     setDescription(item.description)
     setSize(item.size)
     setId(item.id)
+    
+    console.log(id)
+  }
 
-    console.log(title)
+  function handleSubmit (e) {
+        e.preventDefault();
+        const options = {
+            method: "POST",
+            url: api_url,
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "x-access-tokens": clientTokens,
+            },
+            data: {
+                proposer_item_id: id,
+                receiver_item_id: receiverItemId,
+                receiver: receiverId
+            },
+          };
+          console.log(options.data);
+          axios
+            .request(options)
+            .then(function (response) {
+              console.log(response.data);
+            })
+            .catch(function (error) {
+              console.error(error);
+            });
+
 
   }
+
+// const userData = {
+//     proposer_item_id: id,
+//     receiver_item_id: receiverItemId,
+//     receiver: receiverId
+// }
 
 const style = {
     position: 'absolute',
@@ -84,7 +122,7 @@ const style = {
             ))}
         </ImageList>
         <Link to="/messages">
-            <Button type="button" variant='contained'>Next</Button>
+            <Button type="button" variant='contained' onClick={handleSubmit}>Next</Button>
         </Link>
         </Box>
     </Paper>
