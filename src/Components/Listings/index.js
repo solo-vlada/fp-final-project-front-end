@@ -14,6 +14,7 @@ export default function Listings() {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [size, setSize] = useState('');
 
 
 //Get data 
@@ -30,6 +31,8 @@ export default function Listings() {
     setClickedImg(item.images);
     setTitle(item.item_name)
     setDescription(item.description)
+    setSize(item.size)
+
   }
 
   const handleRotationRight= () => {
@@ -37,7 +40,13 @@ export default function Listings() {
     if(currentIndex +1 >= totalLength){
       setCurrentIndex(0)
       const newUrl= itemData[0].images;
-      setClickedImg(newUrl)
+      const newTitle = itemData[0].item_name;
+      const newDescription = itemData[0].description;
+      const newSize = itemData[0].size;
+      setClickedImg(newUrl);
+      setTitle(newTitle);
+      setDescription(newDescription);
+      setSize(newSize);
       return;
     }
     const newIndex = currentIndex + 1;
@@ -45,8 +54,14 @@ export default function Listings() {
       return itemData.indexOf(item) === newIndex;
     });
     const newItem = newUrl[0].images;
+    const newTitle = newUrl[0].item_name;
+    const newDescription = newUrl[0].description;
+    const newSize = newUrl[0].size;
     setClickedImg(newItem);
     setCurrentIndex(newIndex);
+    setTitle(newTitle);
+    setDescription(newDescription);
+    setSize(newSize);
   }
 
   const handleRotationLeft = () => {
@@ -54,15 +69,27 @@ export default function Listings() {
     if(currentIndex === 0){
       setCurrentIndex(totalLength-1);
       const newUrl = itemData[totalLength -1].images;
-      setClickedImg(newUrl)
+      const newTitle = itemData[totalLength -1].item_name;
+      const newDescription = itemData[totalLength -1].description;
+      const newSize = itemData[totalLength -1].size;
+      setClickedImg(newUrl);
+      setTitle(newTitle);
+      setDescription(newDescription);
+      setSize(newSize);
     }
     const newIndex = currentIndex - 1;
     const newUrl = itemData.filter((item) => {
       return itemData.indexOf(item) === newIndex;
     });
     const newItem = newUrl[0].images;
+    const newTitle = newUrl[0].item_name;
+    const newDescription = newUrl[0].description;
+    const newSize = newUrl[0].size;
     setClickedImg(newItem);
     setCurrentIndex(newIndex);
+    setTitle(newTitle);
+    setDescription(newDescription);
+    setSize(newSize);
   }
 
   return (
@@ -90,89 +117,9 @@ export default function Listings() {
           </>
 
         ))}
-        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} />}
+        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} size={size}/>}
       </ImageList>
     </Container>
   
   );
 }
-
-// const itemData = [
-//   {
-//     id:1, 
-//     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-//     title: 'Bed',
-//     author: 'swabdesign',
-//     description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
-//   },
-//   {
-//     id:2, 
-//     img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-//     title: 'Books',
-//     author: 'Pavel Nekoranec',
-//     description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
-//   },
-//   {
-//     id:3, 
-//     img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-//     title: 'Sink',
-//     author: 'Charles Deluvio',
-//     description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
-//   },
-//   {
-//     id:4, 
-//     img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-//     title: 'Kitchen',
-//     author: 'Christian Mackie',
-//     description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
-//   },
-//   {
-//     id:5, 
-//     img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-//     title: 'Blinds',
-//     author: 'Darren Richardson',
-//     description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
-//   },
-//   {
-//     id:6, 
-//     img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-//     title: 'Chairs',
-//     author: 'Taylor Simpson',
-//   },
-//   {
-//     id:7, 
-//     img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-//     title: 'Laptop',
-//     author: 'Ben Kolde',
-//   },
-//   {
-//     id:8, 
-//     img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-//     title: 'Doors',
-//     author: 'Philipp Berndt',
-//   },
-//   {
-//     id:9, 
-//     img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-//     title: 'Coffee',
-//     author: 'Jen P.',
-//   },
-//   {
-//     id:10, 
-//     img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-//     title: 'Storage',
-//     author: 'Douglas Sheppard',
-//   },
-//   {
-//     id:11, 
-//     img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-//     title: 'Candle',
-//     author: 'Fi Bell',
-//   },
-//   {
-//     id:12, 
-//     img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-//     title: 'Coffee table',
-//     author: 'Hutomo Abrianto',
-//   },
-// ];

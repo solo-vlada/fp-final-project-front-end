@@ -4,7 +4,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Container from '@mui/material/Container'
-import Lightbox from '../Lightbox';
+import {PersonalLightbox} from "../../Components"
 
 
 export default function MyListingsComp() {
@@ -13,15 +13,17 @@ export default function MyListingsComp() {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [size, setSize] = useState('');
   const stored_user_id = localStorage.getItem("shopping-user-id");
-  console.log(stored_user_id)
+
+
 //Get data 
-  useEffect(() => {
-    getMyListings(stored_user_id).then((listingsFromApi) => {
-      console.log(listingsFromApi)
-      setItemData(listingsFromApi);
-    });
-  }, []);
+useEffect(() => {
+  getMyListings(stored_user_id).then((listingsFromApi) => {
+    console.log(listingsFromApi)
+    setItemData(listingsFromApi);
+  });
+}, []);
 
   //Handle lightboxes
   const lightBoxHandler = (item, index) => {
@@ -29,6 +31,8 @@ export default function MyListingsComp() {
     setClickedImg(item.images);
     setTitle(item.item_name)
     setDescription(item.description)
+    setSize(item.size)
+
   }
 
   const handleRotationRight= () => {
@@ -36,7 +40,13 @@ export default function MyListingsComp() {
     if(currentIndex +1 >= totalLength){
       setCurrentIndex(0)
       const newUrl= itemData[0].images;
-      setClickedImg(newUrl)
+      const newTitle = itemData[0].item_name;
+      const newDescription = itemData[0].description;
+      const newSize = itemData[0].size;
+      setClickedImg(newUrl);
+      setTitle(newTitle);
+      setDescription(newDescription);
+      setSize(newSize);
       return;
     }
     const newIndex = currentIndex + 1;
@@ -44,8 +54,14 @@ export default function MyListingsComp() {
       return itemData.indexOf(item) === newIndex;
     });
     const newItem = newUrl[0].images;
+    const newTitle = newUrl[0].item_name;
+    const newDescription = newUrl[0].description;
+    const newSize = newUrl[0].size;
     setClickedImg(newItem);
     setCurrentIndex(newIndex);
+    setTitle(newTitle);
+    setDescription(newDescription);
+    setSize(newSize);
   }
 
   const handleRotationLeft = () => {
@@ -53,29 +69,41 @@ export default function MyListingsComp() {
     if(currentIndex === 0){
       setCurrentIndex(totalLength-1);
       const newUrl = itemData[totalLength -1].images;
-      setClickedImg(newUrl)
+      const newTitle = itemData[totalLength -1].item_name;
+      const newDescription = itemData[totalLength -1].description;
+      const newSize = itemData[totalLength -1].size;
+      setClickedImg(newUrl);
+      setTitle(newTitle);
+      setDescription(newDescription);
+      setSize(newSize);
     }
     const newIndex = currentIndex - 1;
     const newUrl = itemData.filter((item) => {
       return itemData.indexOf(item) === newIndex;
     });
     const newItem = newUrl[0].images;
+    const newTitle = newUrl[0].item_name;
+    const newDescription = newUrl[0].description;
+    const newSize = newUrl[0].size;
     setClickedImg(newItem);
     setCurrentIndex(newIndex);
+    setTitle(newTitle);
+    setDescription(newDescription);
+    setSize(newSize);
   }
 
   return (
     <Container maxWidth="small" sx={{ overflowY: 'scroll', my:5 }}>
       <ImageList variant="masonry" cols={2} gap={8} sx={{
         gridTemplateColumns:
-        'repeat(auto-fill, minmax(280px, 1fr)!important'
+        'repeat(auto-fill, minmax(300px, 1fr)!important'
       }}>
         {itemData.map((item, index) => (
           <>
           <ImageListItem key={index} >
             <img
               key={item.id}
-              src={item.images}
+              src={`${item.images}?w=248&fit=crop&auto=format`}
               srcSet={`${item.images}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={item.item_name}
               loading="lazy"
@@ -89,7 +117,7 @@ export default function MyListingsComp() {
           </>
 
         ))}
-        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} />}
+        {clickedImg && <PersonalLightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} size={size}/>}
       </ImageList>
     </Container>
   
