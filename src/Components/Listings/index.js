@@ -129,11 +129,14 @@ import Lightbox from '../Lightbox';
 export default function Listings() {
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
-
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   //Handle lightboxes
   const lightBoxHandler = (item, index) => {
     setCurrentIndex(index);
     setClickedImg(item.img);
+    setTitle(item.title)
+    setDescription(item.description)
   }
 
   const handleRotationRight= () => {
@@ -194,9 +197,8 @@ export default function Listings() {
           </>
 
         ))}
-        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft}/>}
+        {clickedImg && <Lightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} />}
       </ImageList>
-      
     </Container>
   
   );
@@ -208,30 +210,35 @@ const itemData = [
     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
     title: 'Bed',
     author: 'swabdesign',
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
   },
   {
     id:2, 
     img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
     title: 'Books',
     author: 'Pavel Nekoranec',
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
   },
   {
     id:3, 
     img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
     title: 'Sink',
     author: 'Charles Deluvio',
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
   },
   {
     id:4, 
     img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
     title: 'Kitchen',
     author: 'Christian Mackie',
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
   },
   {
     id:5, 
     img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
     title: 'Blinds',
     author: 'Darren Richardson',
+    description: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.'
   },
   {
     id:6, 
