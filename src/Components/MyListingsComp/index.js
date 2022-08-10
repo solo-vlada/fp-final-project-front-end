@@ -14,6 +14,7 @@ export default function MyListingsComp() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [size, setSize] = useState('');
+  const [id, setId] = useState('')
   const stored_user_id = localStorage.getItem("shopping-user-id");
 
 
@@ -32,6 +33,7 @@ useEffect(() => {
     setTitle(item.item_name)
     setDescription(item.description)
     setSize(item.size)
+    setId(item.id)
 
   }
 
@@ -117,7 +119,7 @@ useEffect(() => {
           </>
 
         ))}
-        {clickedImg && <PersonalLightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} size={size}/>}
+        {clickedImg && <PersonalLightbox clickedImg={clickedImg} handleRotationRight={handleRotationRight} setClickedImg={setClickedImg} handleRotationLeft={handleRotationLeft} title={title} description={description} size={size} listingId={id}/>}
       </ImageList>
     </Container>
   

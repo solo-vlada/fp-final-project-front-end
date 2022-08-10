@@ -14,10 +14,17 @@ export const getAllListings = () => {
 };
 
 export const getMyListings = (id) => {
-  console.log("userID",id)
+  
   // Replace endpoint with actual one from backend
   return flaskDb.get(`?user=${id}`).then(({ data }) => {
     console.log(data);
     return data;
   });
 };
+
+export const deleteMyListing = (id) => {
+  return flaskDb.delete(`/delete/${id}`).then((response)=> {
+    console.log(response)
+    return response;
+  });
+}
