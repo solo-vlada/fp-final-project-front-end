@@ -40,7 +40,7 @@ export default function PersonalLightbox({clickedImg, handleRotationRight, setCl
 
     return (
     <>
-     <Paper sx={style} className="dismiss">
+     <Paper sx={style} className="dismiss" onClick={handleClick}>
         <Box sx={{display:"flex", alignItems: "center", position:"relative"}}>
             <ArrowBackIosIcon sx={{ mr:1}} fontSize="large" onClick={handleRotationLeft}/>
             <Box>

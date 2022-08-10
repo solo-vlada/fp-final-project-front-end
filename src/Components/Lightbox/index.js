@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 
 
 
+
 const style = {
     position: 'absolute',
     display: 'flex',
@@ -52,7 +53,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
             </Box>
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}}fontSize="large" className="dismiss" onClick={handleClick}/>
+            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
         </Paper>
         
     </>)

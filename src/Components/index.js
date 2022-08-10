@@ -8,3 +8,4 @@ export {default as MessagesInbox} from "./MessagesInbox"
 export {default as Lightbox} from "./Lightbox"
 export {default as MyListingsComp} from './MyListingsComp'
 export {default as PersonalLightbox} from "./PersonalListingLightBox"
+export {default as SwapItem} from "./SwapItem"

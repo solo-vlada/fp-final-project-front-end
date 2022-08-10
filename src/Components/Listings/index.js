@@ -10,6 +10,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import Lightbox from "../Lightbox";
 
+
 export default function Listings() {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
