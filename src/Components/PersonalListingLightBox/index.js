@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 
 
 
+
 const style = {
     position: 'absolute',
     display: 'flex',
@@ -21,7 +22,7 @@ const style = {
     p: 4,
   };
 
-export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size}) {
+export default function PersonalLightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size}) {
 
     const handleClick = (e) => {
         if(e.target.classList.contains("dismiss")) {
@@ -29,7 +30,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
         }
     };
 
-    const handleDelete = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
     }
 
@@ -44,8 +45,8 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button type="submit" onClick={handleDelete} variant="contained">
-                        Swap
+                <Button type="submit" onClick={handleSubmit} variant="contained">
+                        Delete
                 </Button>
                 </Box>
 
