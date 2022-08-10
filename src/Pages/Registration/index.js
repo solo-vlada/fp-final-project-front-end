@@ -7,7 +7,6 @@ const Registration = () => {
         <h1>Welcome to Preloved</h1>
         <Login/>
         <Register/>
-        <SwapItem />
         </>
         
     )}

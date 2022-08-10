@@ -4,7 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CloseIcon from '@mui/icons-material/Close';
 import { Paper, Typography } from "@mui/material";
 import Button from '@mui/material/Button'
-
+import { SwapItem } from "..";
 
 
 
@@ -22,7 +22,7 @@ const style = {
     p: 4,
   };
 
-export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size}) {
+export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, receiverItemId, receiverId}) {
 
     const handleClick = (e) => {
         if(e.target.classList.contains("dismiss")) {
@@ -54,6 +54,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
             <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
+            <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />
         </Paper>
         
     </>)
