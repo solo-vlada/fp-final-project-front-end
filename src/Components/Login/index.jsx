@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"
 import { useNavigate } from 'react-router-dom';
 import { ApiContext } from '../../ApiContext';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -18,6 +19,7 @@ const style = {
     position: 'absolute',
     display: "flex",
     flexDirection: "column",
+    borderRadius: '10px',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -34,7 +36,7 @@ const style = {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [username, setUsername] = useState('')
-    const [email, setEmail ] = useState('')
+    // const [email, setEmail ] = useState('')
     const [password, setPassword] = useState('')
     const [messages, setMessages] = useContext(ApiContext)
 
@@ -42,7 +44,6 @@ const style = {
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
     const dev_url = 'http://localhost:5050/auth/login'
     
-
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -65,7 +66,7 @@ const style = {
         window.localStorage.setItem('shopping-user-id', response.data.token[1].user_id);
         window.localStorage.setItem('shopping-username', response.data.token[1].username);
         if (response.status === 200) {
-          navigate('/mylistings')
+          navigate('/home')
         }
       }).catch(function (error) {
         console.error(error);
@@ -79,13 +80,13 @@ const style = {
           onClick={handleOpen}
           css={{
             width: '150px',
-            backgroundColor: '#086788',
+            backgroundColor: '#0098AC',
             borderRadius: '10px',
             border: '2px solid transparent',
             padding: '0.5rem 2rem',
             color: 'white',
             '&:hover': {
-              border: '2px solid #086788',
+              border: '2px solid #0098AC',
               color: '#086788',
             }
           }}>
@@ -99,9 +100,10 @@ const style = {
         >
         <form onSubmit={handleSubmit}>
           <Box sx={style}>
-            <Typography variant='h6' component="h4" sx={{mb:1}}>
+            <Typography variant='h5'component="h2" fontFamily="Montserrat" sx={{mb:1}}>
                 Login
             </Typography>
+            <CloseIcon onClick={handleClose} fontSize='medium' sx={{position:"absolute", top: '10px', right: '15px'}}/>
             <TextField 
             required
             name="username"
@@ -109,7 +111,7 @@ const style = {
             label="Username"
             size='small'
             value={username}
-            sx={{mb:1}}
+            sx={{my:1}}
             onChange={(e) => {
                 setUsername(e.target.value)
             }}
@@ -122,25 +124,29 @@ const style = {
             type="password"
             size='small'
             value={password}
-            sx={{mb:1}}
+            sx={{my:1}}
             onChange={(e) => {
                 setPassword(e.target.value)
             }}
           />
-          {/* <TextField
-            id="email"
-            name="email"
-            required
-            label="Email"
-            type="email"
-            size='small'
-            value={email}
-            sx={{mb:1}}
-            onChange={(e) => {
-                setEmail(e.target.value)
-            }}
-          /> */}
-          <Button type="submit" variant='contained'>Login</Button>
+          <Button
+          sx={{
+            width: '150px',
+            // backgroundColor: '#086788',
+            backgroundColor:'#0098AC',
+            fontFamily:"Montserrat",
+            alignSelf: 'center',
+            borderRadius: '10px',
+            border: '2px solid transparent',
+            padding: '0.5rem 2rem',
+            margin: 1,
+            color: 'white',
+            '&:hover': {
+              border: '2px solid #0098AC',
+              color: '#086788',
+            }
+          }}
+            type="submit">Login</Button>
           </Box>
         </form>
         </Modal>

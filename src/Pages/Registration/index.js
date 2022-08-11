@@ -4,22 +4,13 @@ import React from "react";
 import {AddNewItem, Login, Register, Footer, SwapItem} from '../../Components'
 import './registration.css'
 import mockup from '../../Static/imgs/Abstract Iphone Mockup Instagram Story.png'
+import logo from '../../Static/imgs/logo.png'
 
 const Registration = () => {
     return (
 
         <div className='registerpage-container'>
-            <h1 css={{
-                    fontSize: '2rem',
-                    marginTop: '1rem',
-                    marginBottom: '1.5rem',
-                    textAlign: 'center',
-                }}>Welcome to <br />
-                    <span css={{
-                        color: '#086788',
-                        textDecoration: 'underline',
-                    }}>Preloved</span>
-            </h1>
+            <img css={{width:'250px'}} src={logo}/>
             <img
                 src={mockup}
                 alt='iphone mockup'
@@ -46,7 +37,9 @@ const Registration = () => {
                 <div className='description-body'>
                     <h3>Why buy when you can <br />
                         <span css={{
-                            color:'#DD1C1A',
+                            // color:'#DD1C1A',
+                            color: '#00B0AB',
+                            fontWeight: '700',
                             textAlign:'center',
                             fontSize:'2rem'
                         }}>
