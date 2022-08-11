@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React, { useState, useEffect } from "react";
 import { getAllListings } from "../../utils/api";
 import ImageList from "@mui/material/ImageList";
@@ -9,14 +11,14 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import Lightbox from "../Lightbox";
-
+import "./listings.css";
 
 export default function Listings() {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [receiverItemId, setReceiverItemId] = useState(null) 
-  const [receiverId, setReceiverId] = useState(null) 
+  const [receiverItemId, setReceiverItemId] = useState(null);
+  const [receiverId, setReceiverId] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [filter, setFilter] = useState("");
@@ -34,8 +36,8 @@ export default function Listings() {
   const lightBoxHandler = (item, index) => {
     setCurrentIndex(index);
     setClickedImg(item.images);
-    setReceiverId(item.user_id)
-    setReceiverItemId(item.id)
+    setReceiverId(item.user_id);
+    setReceiverItemId(item.id);
     setTitle(item.item_name);
     setDescription(item.description);
     setSize(item.size);
@@ -102,22 +104,38 @@ export default function Listings() {
   };
 
   return (
-    <Container maxWidth="small" sx={{ overflowY: "scroll", my: 5 }}>
-      <FormControl required size="small" sx={{ my: 1 }}>
-        <InputLabel htmlFor="demo-dialog-native">Filter</InputLabel>
-        <Select
-          native
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          input={<OutlinedInput label="Filter" id="demo-dialog-native" />}
-        >
-          <option aria-label="None" value="" />
-          <option value={"shirt"}>Shirt</option>
-          <option value={"skirt"}>Skirt</option>
-          <option value={"dress"}>Dress</option>
-          <option value={"pants"}>Pants</option>
-        </Select>
-      </FormControl>
+    <Container
+      maxWidth="small"
+      sx={{
+        overflowY: "scroll",
+        my: 5,
+      }}
+    >
+      <div className="filter">
+        <FormControl required size="small" sx={{ my: 1 }}>
+          <InputLabel
+            id="demo-simple-select-label"
+            htmlFor="demo-dialog-native"
+          >
+            Filter
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            native
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            input={<OutlinedInput label="Filter" id="demo-dialog-native" />}
+            label="Filter"
+          >
+            <option aria-label="None" value="" label="" />
+            <option value={"shirt"}>Shirt</option>
+            <option value={"skirt"}>Skirt</option>
+            <option value={"dress"}>Dress</option>
+            <option value={"pants"}>Pants</option>
+          </Select>
+        </FormControl>
+      </div>
       <ImageList
         variant="masonry"
         cols={2}
@@ -152,8 +170,8 @@ export default function Listings() {
             title={title}
             description={description}
             size={size}
-            receiverItemId = {receiverItemId}
-            receiverId = {receiverId}
+            receiverItemId={receiverItemId}
+            receiverId={receiverId}
           />
         )}
       </ImageList>

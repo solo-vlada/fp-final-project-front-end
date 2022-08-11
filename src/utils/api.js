@@ -15,8 +15,9 @@ export const getAllListings = (filter) => {
 };
 
 export const getMyListings = (id, filter) => {
-  // &category=${filter}
-  return flaskDb.get(`?user=${id}`).then(({ data }) => {
+  let path = `?user=${id}`;
+  if (filter) path += `&category=${filter}`;
+  return flaskDb.get(path).then(({ data }) => {
     console.log(data);
     return data;
   });
