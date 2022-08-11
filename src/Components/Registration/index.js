@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
     position: 'absolute',
@@ -16,6 +17,7 @@ const style = {
     flexDirection: "column",
     top: '50%',
     left: '50%',
+    borderRadius: '10px',
     transform: 'translate(-50%, -50%)',
     width: 300,
     bgcolor: 'background.paper',
@@ -70,13 +72,13 @@ const style = {
           sx={{mb:1}}
           css={{
             width: '150px',
-            backgroundColor: '#086788',
+            backgroundColor: '#0098AC',
             borderRadius: '10px',
             margin: 0,
             border: '2px solid transparent',
             color: 'white',
             '&:hover': {
-              border: '2px solid #086788',
+              border: '2px solid #0098AC',
               color: '#086788',
             }
           }}>
@@ -89,9 +91,10 @@ const style = {
           aria-describedby="modal-modal-description">
           <form onSubmit={handleSubmit}>
           <Box sx={style}>
-            <Typography variant='h6' component="h4">
+            <Typography variant='h5'component="h2" fontFamily="Montserrat" sx={{mb:1}}>
                 Register
             </Typography>
+            <CloseIcon onClick={handleClose} fontSize='medium' sx={{position:"absolute", top: '10px', right: '15px'}}/>
             <TextField 
             required
             id="username"
@@ -145,7 +148,24 @@ const style = {
             sx={{mb:1}}
             onChange={(e) => setLocation(e.target.value)}
           />
-          <Button type='submit' variant='contained'>Register</Button>
+          <Button
+              sx={{
+                width: '150px',
+                // backgroundColor: '#086788',
+                backgroundColor:'#0098AC',
+                fontFamily:"Montserrat",
+                alignSelf: 'center',
+                borderRadius: '10px',
+                border: '2px solid transparent',
+                padding: '0.5rem 2rem',
+                margin: 1,
+                color: 'white',
+                '&:hover': {
+                  border: '2px solid #0098AC',
+                  color: '#086788',
+                }
+              }}
+           type='submit'>Register</Button>
           </Box>
           </form>
         </Modal>
