@@ -16,11 +16,11 @@ import axios from 'axios';
 
 export default function SwapItem({receiverId, receiverItemId}) {
   const [itemData, setItemData] = useState([]);
-  const [clickedImg, setClickedImg] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(null);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [size, setSize] = useState('');
+  const [clickedImg, setClickedImg] = useState(false);
+//   const [currentIndex, setCurrentIndex] = useState(null);
+//   const [title, setTitle] = useState('');
+//   const [description, setDescription] = useState('');
+//   const [size, setSize] = useState('');
   const [id, setId] = useState('')
   const stored_user_id = localStorage.getItem("shopping-user-id");
   const navigate = useNavigate();
@@ -38,12 +38,13 @@ useEffect(() => {
 
   //Handle lightboxes
   const lightBoxHandler = (item, index) => {
-    setCurrentIndex(index);
-    setClickedImg(item.images);
-    setTitle(item.item_name)
-    setDescription(item.description)
-    setSize(item.size)
+    // setCurrentIndex(index);
+    // setClickedImg(item.images);
+    // setTitle(item.item_name)
+    // setDescription(item.description)
+    // setSize(item.size)
     setId(item.id)
+    setClickedImg(true)
     
     console.log(id)
   }
@@ -90,17 +91,22 @@ const style = {
     p: 4,
   };
 
+
   return (
     <Paper sx={style}>
-            <Box>
-            <Typography> Choose item to swap</Typography>
-            <ImageList variant="masonry" cols={2} gap={8} sx={{
+            <Box sx={{display: "flex", flexDirection:"column"}}>
+            <Typography sx={{mb:2, alignSelf: 'center',  border: '1px solid #000', p:1 }} component='h4' variant='h6'> Choose item to swap</Typography>
+            <ImageList variant="masonry" cols={2} gap={10} sx={{ m:1, 
             gridTemplateColumns:
             'repeat(auto-fill, minmax(300px, 1fr)!important'
         }}>
             {itemData.map((item, index) => (
             <>
-            <ImageListItem key={index} >
+             <ImageListItem
+                 sx = 
+                 {{height: '250px!important',
+                  width: 'auto',
+                  }} key={index} >
                 <img
                 key={item.id}
                 src={`${item.images}?w=248&fit=crop&auto=format`}
@@ -116,9 +122,7 @@ const style = {
             </>
             ))}
         </ImageList>
-        <Link to="/messages">
-            <Button type="button" variant='contained' onClick={handleSubmit}>Next</Button>
-        </Link>
+        <Button type="button" variant='contained'  sx={{alignSelf: 'center', mt:2 }}onClick={handleSubmit}>Next</Button>
         </Box>
     </Paper>
   
