@@ -15,7 +15,7 @@ import Select from "@mui/material/Select";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import CloseIcon from '@mui/icons-material/Close';
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -72,6 +72,7 @@ export default function AddNewItem() {
       },
     };
     console.log(options.data);
+
     axios
       .request(options)
       .then(function (response) {
@@ -85,22 +86,8 @@ export default function AddNewItem() {
     setItemName("");
     setSize("");
     setCategory("");
-    console.log(options.data)
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        handleClose();
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    setDescription("");
-    setItemName("");
-    setSize("");
-    setCategory("");
+    console.log(options.data);
   };
-  
 
   const handleImage = (e) => {
     e.preventDefault();
@@ -124,10 +111,18 @@ export default function AddNewItem() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} component="form">
-          <Typography variant="h6" component="h4" sx={{fontFamily:"Montserrat"}}>
+          <Typography
+            variant="h6"
+            component="h4"
+            sx={{ fontFamily: "Montserrat" }}
+          >
             Add New Item
           </Typography>
-          <CloseIcon onClick={handleClose} fontSize='medium' sx={{position:"absolute", top: '15px', right: '15px'}}/>
+          <CloseIcon
+            onClick={handleClose}
+            fontSize="medium"
+            sx={{ position: "absolute", top: "15px", right: "15px" }}
+          />
           <FormControl>
             <TextField
               id="item_name"
@@ -194,23 +189,25 @@ export default function AddNewItem() {
               Add image
             </Button> */}
             <Button
-          sx={{
-            width: '150px',
-            // backgroundColor: '#086788',
-            backgroundColor:'#0098AC',
-            fontFamily:"Montserrat",
-            alignSelf: 'center',
-            borderRadius: '10px',
-            border: '2px solid transparent',
-            padding: '0.5rem 2rem',
-            margin: 1,
-            color: 'white',
-            '&:hover': {
-              border: '2px solid #0098AC',
-              color: '#086788',
-            }
-          }}           
-             component="label" onClick={handleImage}>
+              sx={{
+                width: "150px",
+                // backgroundColor: '#086788',
+                backgroundColor: "#0098AC",
+                fontFamily: "Montserrat",
+                alignSelf: "center",
+                borderRadius: "10px",
+                border: "2px solid transparent",
+                padding: "0.5rem 2rem",
+                margin: 1,
+                color: "white",
+                "&:hover": {
+                  border: "2px solid #0098AC",
+                  color: "#086788",
+                },
+              }}
+              component="label"
+              onClick={handleImage}
+            >
               Upload
             </Button>
             <IconButton
@@ -226,26 +223,28 @@ export default function AddNewItem() {
                   setImageUpload(event.target.files[0]);
                 }}
               />
-              <PhotoCamera  sx={{color: '#0098AC' }}/>
+              <PhotoCamera sx={{ color: "#0098AC" }} />
             </IconButton>
             <Button
-                      sx={{
-                        width: 'auto',
-                        // backgroundColor: '#086788',
-                        backgroundColor:'#0098AC',
-                        fontFamily:"Montserrat",
-                        alignSelf: 'center',
-                        borderRadius: '10px',
-                        border: '2px solid transparent',
-                        padding: '0.5rem 2rem',
-                        margin: 1,
-                        color: 'white',
-                        '&:hover': {
-                          border: '2px solid #0098AC',
-                          color: '#086788',
-                        }
-                      }}
-            type="submit" onClick={handleSubmit} >
+              sx={{
+                width: "auto",
+                // backgroundColor: '#086788',
+                backgroundColor: "#0098AC",
+                fontFamily: "Montserrat",
+                alignSelf: "center",
+                borderRadius: "10px",
+                border: "2px solid transparent",
+                padding: "0.5rem 2rem",
+                margin: 1,
+                color: "white",
+                "&:hover": {
+                  border: "2px solid #0098AC",
+                  color: "#086788",
+                },
+              }}
+              type="submit"
+              onClick={handleSubmit}
+            >
               Submit
             </Button>
           </Box>
