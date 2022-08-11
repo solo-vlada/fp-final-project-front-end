@@ -9,7 +9,6 @@ import "./App.css";
 function App() {
   return (
     <div>
-      {/* <h1 className="title"></h1> */}
         <Routes>
           <Route path="/" element={<Registration/>}/>
           <Route element={<Layout/>} >
