@@ -62,8 +62,8 @@ useEffect(() => {
             },
             data: {
                 proposer_item_id: id,
-                receiver_item_id: receiverItemId,
-                receiver: receiverId
+                reciever_item_id: receiverItemId,
+                reciever: receiverId
             },
           };
           console.log(options.data);

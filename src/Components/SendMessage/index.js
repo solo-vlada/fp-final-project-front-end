@@ -3,22 +3,45 @@ import { css } from '@emotion/react';
 import React, { useState } from 'react'
 import { TextField,Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export default function SendMessage() {
+export default function SendMessage({getReceiver}) {
+    const { offer_id } = useParams();
     const [messageText, setMessageText] = useState('');
+    const sender_id = localStorage.getItem('shopping-user-id');
+    const access_token = localStorage.getItem('shopping-access-token');
 
     const handleMessageTextChange = (e) => {
         console.log(e.target.value);
         setMessageText(e.target.value);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(messageText);
-
-        const formData = {
+        console.log(`offer_id: ${typeof offer_id}`);
+        const options = {
+          method: 'POST',
+          url: 'https://concept-crew-server.herokuapp.com/auth/msg',
+          headers: {
+            'x-access-tokens': access_token,
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+          },
+          data: {
             message_text: messageText,
-        }
+            offer_id: parseInt(offer_id),
+            user_id: sender_id,
+            receiver_id: getReceiver
+          }
+        };
+        
+        axios.request(options).then(function (response) {
+          console.log(response.data);
+        }).catch(function (error) {
+          console.error(error);
+        });
+        
         setMessageText('');
     }
 
