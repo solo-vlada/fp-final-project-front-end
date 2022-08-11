@@ -112,7 +112,7 @@ export default function Listings() {
       }}
     >
       <div className="filter">
-        <FormControl required size="small" sx={{ my: 1 }}>
+        <FormControl size="small" sx={{ my: 1 }}>
           <InputLabel
             id="demo-simple-select-label"
             htmlFor="demo-dialog-native"
@@ -142,7 +142,7 @@ export default function Listings() {
         cols={2}
         gap={8}
         sx={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr)!important",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr)!important",
         }}
       >
         {itemData.map((item, index) => (
