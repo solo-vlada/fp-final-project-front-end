@@ -1,13 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from '@emotion/react';
 import React from "react";
-<<<<<<< HEAD
-import {AddNewItem, Login, Register, Footer} from '../../Components'
+import {AddNewItem, Login, Register, Footer, SwapItem} from '../../Components'
 import './registration.css'
 import mockup from '../../Static/imgs/Abstract Iphone Mockup Instagram Story.png'
-=======
-import {AddNewItem, Login, Register, SwapItem} from '../../Components'
->>>>>>> b1e0111df393b38ffd0f65ac422f6e61ad78cad4
 
 const Registration = () => {
     return (
