@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Select from "@mui/material/Select";
 import { PersonalLightbox } from "../../Components";
+import "./myListingsComp.css";
 
 export default function MyListingsComp() {
   const [itemData, setItemData] = useState([]);
@@ -98,21 +99,23 @@ export default function MyListingsComp() {
 
   return (
     <Container maxWidth="small" sx={{ overflowY: "scroll", my: 5 }}>
-      <FormControl required size="small" sx={{ my: 1 }}>
-        <InputLabel htmlFor="demo-dialog-native">Filter</InputLabel>
-        <Select
-          native
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          input={<OutlinedInput label="Filter" id="demo-dialog-native" />}
-        >
-          <option aria-label="None" value="" />
-          <option value={"shirt"}>Shirt</option>
-          <option value={"skirt"}>Skirt</option>
-          <option value={"dress"}>Dress</option>
-          <option value={"pants"}>Pants</option>
-        </Select>
-      </FormControl>
+      <div className="filter">
+        <FormControl required size="small" sx={{ my: 1, zIndex: -1000 }}>
+          <InputLabel htmlFor="demo-dialog-native">Filter</InputLabel>
+          <Select
+            native
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            input={<OutlinedInput label="Filter" id="demo-dialog-native" />}
+          >
+            <option aria-label="None" value="" />
+            <option value={"shirt"}>Shirt</option>
+            <option value={"skirt"}>Skirt</option>
+            <option value={"dress"}>Dress</option>
+            <option value={"pants"}>Pants</option>
+          </Select>
+        </FormControl>
+      </div>
       <ImageList
         variant="masonry"
         cols={2}
