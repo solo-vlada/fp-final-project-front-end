@@ -67,7 +67,6 @@ export default function Listings() {
     const newSize = newUrl[0].size;
     setClickedImg(newItem);
     setCurrentIndex(newIndex);
-
     setTitle(newTitle);
     setDescription(newDescription);
     setSize(newSize);
