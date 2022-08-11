@@ -1,12 +1,62 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import React from 'react'
-import { Box, TextField,Button } from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import { NoEncryption } from '@mui/icons-material';
+import React, { useContext, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Box } from '@mui/material';
+import { ApiContext } from '../../ApiContext';
+import axios from 'axios';
+import { SendMessage } from '../../Components'
 
 
 export default function MessagePage() {
+    const navigate = useNavigate();
+    const { reciever_id } = useParams();
+    const [message, setMessage] = useContext(ApiContext);
+    const user_id = localStorage.getItem('shopping-user-id');
+    const sender_id = localStorage.getItem('shopping-user-id');
+
+    // *************************** SEND MESSAGE IN CHAT ***************************
+
+    //API endpoint for recieving messages
+    const api_url = `https://concept-crew-server.herokuapp.com/auth/msg`
+    useEffect(() => {
+        console.log(user_id);
+
+        const getMessages = async () => {
+            const user_id = localStorage.getItem('shopping-user-id')
+            if (!user_id) {
+                navigate('/');
+            } else {
+                const clientToken = localStorage.getItem('shopping-access-token');
+                console.log(clientToken);
+                const options = {
+                    method: 'GET',
+                    url: api_url,
+                    headers: {
+                    'x-access-tokens': clientToken,
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                    },
+                    
+                };
+                
+                await axios.request(options)
+                .then( (response) => {
+                    console.log(`Data: ${JSON.stringify(response.data)}`);
+                    setMessage(response.data);
+                    // apiData = response.data
+                    console.log(message); 
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+            }
+        }
+        getMessages();
+    }, [])
+
+
   return (
     <div css={{
         display: 'flex',
@@ -29,7 +79,7 @@ export default function MessagePage() {
             justifyContent: 'space-between',
             alignItems: 'flex-start',
         }} >
-            <h1 css={{marginBottom:'0.5rem'}}>username: tester</h1>
+            <h1 css={{marginBottom:'0.5rem'}}>username: user 1</h1>
             <Box css={{
                 padding: '0.5rem',
                 overflowY: 'scroll',
@@ -39,7 +89,27 @@ export default function MessagePage() {
                 width: '100%',
                 height: '100%',
             }}>
-                hello, please fill me with message text
+                {message != null ? message.Messages.map((message,index) => {
+                    return (
+                        <div key={index} css={{
+                            borderRadius: '1rem',
+                            padding: '1rem',
+                            backgroundColor: '#086788',
+                            color:'#fff',
+                            marginBottom: '1rem',
+                        }}>
+                            <p>
+                                {message.message_text}
+                            </p>
+                            <p css={{
+                                fontSize:'0.7rem',
+                                
+                            }}>
+                                {message.sender_name}
+                            </p>
+                        </div>
+                    )   
+                }) : <p>Loading...</p>}
             </Box>
         </Box>
         <div css={{
@@ -53,36 +123,7 @@ export default function MessagePage() {
             borderRadius: '0.5rem',
             padding: '1rem',
         }}>
-            <TextField
-            label="Send a message"
-            color="secondary"
-            css={{
-                position: 'relative',
-                width: '90%',
-                margin: '0 0.7rem',
-                '& fieldset': {
-                    borderColor: '#086788 !important',
-                },
-                '& label': {
-                    color: '#086788 !important',
-                },
-            }}
-            sx={{color: '#086788'}}/>
-            <Button css={{
-                width:'10%',
-                height:'100%',
-                borderRadius: '10px',
-                '&:hover': {
-                    backgroundColor: 'rgba(255,255,255,0.5) !important',
-                    opacity: '1',
-                },
-                }}>
-                <SendIcon css={{
-                '& path': {
-                    color: '#086788 !important',
-                },
-                }}/>
-            </Button>
+            <SendMessage />
         </div>
     </div>
   )

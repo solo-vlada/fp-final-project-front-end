@@ -42,7 +42,7 @@ export default function AddNewItem() {
   const [imageURL, setimageURL] = useState("");
 
   //Add heroku endpoint
-  const api_url = "https://concept-crew-server.herokuapp.com/auth/register";
+  const api_url = "https://concept-crew-server.herokuapp.com/new-listing";
   const dev_url = "http://localhost:5050/clothing";
 
   const stored_user_id = localStorage.getItem("shopping-user-id");
@@ -71,38 +71,70 @@ export default function AddNewItem() {
     //     console.log(res)
     // })
 
-    const options = {
-      method: "POST",
-      url: "http://localhost:5050/new-listing",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: "Basic Og==",
-      },
-      data: {
-        item_name: itemName,
-        item_size: size,
-        item_cat: category,
-        item_desc: description,
-        item_user_id: stored_user_id,
-        item_images: imageURL,
-      },
-    };
+    // const options = {
+    //   method: "POST",
+    //   url: "http://localhost:5050/new-listing",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //     Authorization: "Basic Og==",
+    //   },
+    //   data: {
+    //     item_name: itemName,
+    //     item_size: size,
+    //     item_cat: category,
+    //     item_desc: description,
+    //     item_user_id: stored_user_id,
+    //     item_images: imageURL,
+    //   },
+    // };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        handleClose();
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
-    setDescription("");
-    setItemName("");
-    setSize("");
-    setCategory("");
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //     handleClose();
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+    // setDescription("");
+    // setItemName("");
+    // setSize("");
+    // setCategory("");
+
+  const options = {
+    method: "POST",
+    url: api_url,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: "Basic Og==",
+    },
+    data: {
+      "item_name": itemName,
+      "item_size": size,
+      "item_cat": category,
+      "item_desc": description,
+      "item_user_id": stored_user_id,
+      "item_images": imageURL,
+    },
   };
+  console.log(options.data)
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+      handleClose();
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  setDescription("");
+  setItemName("");
+  setSize("");
+  setCategory("");
+};
   const handleImage = (e) => {
     e.preventDefault();
     if (imageUpload == null) return;

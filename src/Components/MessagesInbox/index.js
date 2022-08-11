@@ -7,21 +7,23 @@ import { ApiContext } from '../../ApiContext';
 
 export default function MessagesInbox() {
     const navigate = useNavigate();
-    const { id } = useParams();
-    const [myMessage, setMyMessage] = useContext(ApiContext);
+    // const { id } = useParams();
+    const [receiverUrl, setReceiverUrl] = useState();
+    const [message, setMessage] = useContext(ApiContext);
     const user_id = localStorage.getItem('shopping-user-id');
 
-    let apiData = null;
     // **************** NAVIGATE TO MESSAGE PAGE ****************
 
     // handle click on message preview in inbox
-    const handleClick = () => {
-        navigate(`/messages/${id}`);
+    const handleClick = (e) => {
+        e.preventDefault();
+        console.log(e.target.dataset.receiver_id);
+        navigate(`/messages/${e.target.dataset.receiver_id}`);
     }
 
     // endpoints for getting messages
     const dev_url = `http://localhost:5050/auth/msg/${user_id}`
-    const api_url = `https://concept-crew-server.herokuapp.com/auth/msg/${user_id}`
+    const api_url = `https://concept-crew-server.herokuapp.com/auth/msg`
 
     // console.log(message.Messages)
 
@@ -40,7 +42,7 @@ export default function MessagesInbox() {
                 console.log(clientToken);
                 const options = {
                     method: 'GET',
-                    url: 'http://localhost:5050/auth/msg',
+                    url: api_url,
                     headers: {
                     'x-access-tokens': clientToken,
                     'Access-Control-Allow-Origin': '*',
@@ -50,10 +52,10 @@ export default function MessagesInbox() {
                 };
                 
                 await axios.request(options).then(function (response) {
+                    setMessage(response.data);
                     console.log(`Data: ${JSON.stringify(response.data)}`);
-                    setMyMessage(response.data);
                     // apiData = response.data
-                    console.log(myMessage);
+                    console.log(message);
                 }).catch(function (error) {
                     console.error(error);
                 });
@@ -63,7 +65,7 @@ export default function MessagesInbox() {
     }, [])
 
     const allMsgs = () => {
-    const msgArray = myMessage.Messages;
+    const msgArray = message.Messages;
     for(let i = 0; i < msgArray.length; i++) {
         let arr = [];
         arr.push(msgArray[i]);
@@ -76,13 +78,13 @@ export default function MessagesInbox() {
     <div>
         <div className='inbox-container'>
                 {/* <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/> */}
-                {/* {myMessage != null ? <h1>{myMessage.Messages[0].receiver_name}</h1> : <p>Loading...</p>} */}
-                {myMessage != null ?
-                        myMessage.Messages.map((message,index) => {
+                {/* {message != null ? <h1>{message.Messages[0].receiver_name}</h1> : <p>Loading...</p>} */}
+                {message != null ?
+                        message.Messages.map((message,index) => {
                             return (
-                                <div onClick={handleClick} className='conversation-container'>
-                                <div key={index} className='conversation-info'>
+                                <div data-receiver_id={message.receiver} key={index} onClick={handleClick} className='conversation-container'>
                                     <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
+                                <div className='conversation-info'>
                                     <h3 >{message.receiver_name}</h3>
                                     <p>{message.message_text}</p>
                                 </div> 
