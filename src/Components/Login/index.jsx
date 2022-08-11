@@ -43,12 +43,17 @@ const style = {
     const dev_url = 'http://localhost:5050/auth/login'
     
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
       const options = {
         method: 'POST',
+<<<<<<< HEAD:src/Components/Login/index.jsx
         url: 'https://concept-crew-server.herokuapp.com/auth/login',
+=======
+        url: url,
+>>>>>>> b1e0111df393b38ffd0f65ac422f6e61ad78cad4:src/Components/Login/index.js
         auth: { username: username, password: password },
         headers: {
           'Content-Type': 'application/json',

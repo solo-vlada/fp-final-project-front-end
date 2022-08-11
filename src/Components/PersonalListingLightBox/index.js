@@ -4,8 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import CloseIcon from '@mui/icons-material/Close';
 import { Paper, Typography } from "@mui/material";
 import Button from '@mui/material/Button'
-import { SwapItem } from "..";
-import {useState} from 'react'
+import { deleteMyListing } from "../../utils/api";
 
 
 
@@ -23,10 +22,7 @@ const style = {
     p: 4,
   };
 
-export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, receiverItemId, receiverId}) {
-
-    const [isVisible, setIsVisible] = useState(false);
-    const [isShown, setIsShown] = useState(true);
+export default function PersonalLightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, listingId}) {
 
     const handleClick = (e) => {
         if(e.target.classList.contains("dismiss")) {
@@ -34,15 +30,17 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
         }
     };
 
-    const handleSwap = () => {
-        setIsVisible(true)
-        setIsShown(false)
-        console.log(isVisible)
+    const handleDelete = (e) => {
+        e.preventDefault();
+        deleteMyListing(listingId).then((response) => {
+            console.log(response);
+            setClickedImg(null);
+        });
     }
 
     return (
     <>
-     {isShown && <Paper sx={style} className="dismiss">
+     <Paper sx={style} className="dismiss" onClick={handleClick}>
         <Box sx={{display:"flex", alignItems: "center", position:"relative"}}>
             <ArrowBackIosIcon sx={{ mr:1}} fontSize="large" onClick={handleRotationLeft}/>
             <Box>
@@ -51,17 +49,16 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button className="dismiss" type="submit" onClick={handleSwap} variant="contained">
-                        Swap
+                <Button type="submit" onClick={handleDelete} variant="contained" >
+                        Delete
                 </Button>
                 </Box>
 
             </Box>
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
-        </Paper> }
-        {isVisible && <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />}
+            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}}fontSize="large"  className="dismiss" onClick={handleClick} />
+        </Paper>
         
     </>)
 

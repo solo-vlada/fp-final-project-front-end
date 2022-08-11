@@ -42,99 +42,65 @@ export default function AddNewItem() {
   const [imageURL, setimageURL] = useState("");
 
   //Add heroku endpoint
-  const api_url = "https://concept-crew-server.herokuapp.com/new-listing";
+  const api_url = "https://concept-crew-server.herokuapp.com/auth/new-listing";
   const dev_url = "http://localhost:5050/clothing";
 
   const stored_user_id = localStorage.getItem("shopping-user-id");
+  const clientTokens = localStorage.getItem("shopping-access-token");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
-    console.log(imageURL);
-    // const formData = {
-    //   item_name: itemName,
-    //   size: size,
-    //   category: category,
-    //   description: description,
-    // }
-    // console.log(formData)
-    // const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Access-Control-Allow-Origin': '*',
-    //     'Access-Control-Allow-Methods': 'GET, POST',
-    //     'Access-Control-Allow-Headers': 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-    // }
 
-    // const response = axios.post(dev_url, formData, { headers })
-    // response.then(res => {
-    //     console.log(res)
-    // })
+    const options = {
+      method: "POST",
+      url: api_url,
 
-    // const options = {
-    //   method: "POST",
-    //   url: "http://localhost:5050/new-listing",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //     Authorization: "Basic Og==",
-    //   },
-    //   data: {
-    //     item_name: itemName,
-    //     item_size: size,
-    //     item_cat: category,
-    //     item_desc: description,
-    //     item_user_id: stored_user_id,
-    //     item_images: imageURL,
-    //   },
-    // };
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "x-access-tokens": clientTokens,
+      },
 
-    // axios
-    //   .request(options)
-    //   .then(function (response) {
-    //     console.log(response.data);
-    //     handleClose();
-    //   })
-    //   .catch(function (error) {
-    //     console.error(error);
-    //   });
-    // setDescription("");
-    // setItemName("");
-    // setSize("");
-    // setCategory("");
-
-  const options = {
-    method: "POST",
-    url: api_url,
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: "Basic Og==",
-    },
-    data: {
-      "item_name": itemName,
-      "item_size": size,
-      "item_cat": category,
-      "item_desc": description,
-      "item_user_id": stored_user_id,
-      "item_images": imageURL,
-    },
+      data: {
+        item_name: itemName,
+        item_size: size,
+        item_cat: category,
+        item_desc: description,
+        item_user_id: stored_user_id,
+        item_images: imageURL,
+      },
+    };
+    console.log(options.data);
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        handleClose();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    setDescription("");
+    setItemName("");
+    setSize("");
+    setCategory("");
+    console.log(options.data)
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        handleClose();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    setDescription("");
+    setItemName("");
+    setSize("");
+    setCategory("");
   };
-  console.log(options.data)
-  axios
-    .request(options)
-    .then(function (response) {
-      console.log(response.data);
-      handleClose();
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setDescription("");
-  setItemName("");
-  setSize("");
-  setCategory("");
-};
+  
+
   const handleImage = (e) => {
     e.preventDefault();
     if (imageUpload == null) return;
@@ -146,71 +112,72 @@ export default function AddNewItem() {
 
     console.log(imageUpload);
   };
-  
-    return (
-        <>
-       <AddCircleIcon onClick={handleOpen} fontSize="large" />
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} component="form">
-            <Typography variant='h6' component="h4">
-                Add New Item
-            </Typography>
-            <FormControl>
-                <TextField 
-                    id="item_name"
-                    name="item_name"
-                    label="Item name"
-                    value={itemName}
-                    size='small'
-                    sx={{my:1}}
-                    onChange={(e) => setItemName(e.target.value)}
-            />
-            </FormControl>
-             <FormControl required size='small'  sx={{ my:1 }}>
-              <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
-              <Select
-                native
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                input={<OutlinedInput label="Category" id="demo-dialog-native" />}
-              >
-                <option aria-label="None" value="" />
-                <option value={"shirt"}>Shirt</option>
-                <option value={"skirt"}>Skirt</option>
-                <option value={"dress"}>Dress</option>
-              </Select>
-            </FormControl>
-            <FormControl  size='small' sx={{ my:1}}>
-              <InputLabel required htmlFor="demo-dialog-native">Size</InputLabel>
-              <Select
-                native
-                value={size}
-                onChange={(e) => setSize(e.target.value)}
-                input={<OutlinedInput label="Size" id="demo-dialog-native" />}
-              >
-                <option aria-label="None" value="" />
-                <option value={"small"}>Small</option>
-                <option value={"medium"}>Medium</option>
-                <option value={"large"}>Large</option>
-              </Select>
-            </FormControl>
-            <FormControl>
-                <TextField 
-                    id="description"
-                    name="description"
-                    label="Description"
-                    value={description}
-                    multiline
-                    maxRows={3}
-                    size='small'
-                    sx={{my:1}}
-                    onChange={(e) => setDescription(e.target.value)}
 
+  return (
+    <>
+      <AddCircleIcon onClick={handleOpen} fontSize="large" />
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style} component="form">
+          <Typography variant="h6" component="h4">
+            Add New Item
+          </Typography>
+          <FormControl>
+            <TextField
+              id="item_name"
+              name="item_name"
+              label="Item name"
+              value={itemName}
+              size="small"
+              sx={{ my: 1 }}
+              onChange={(e) => setItemName(e.target.value)}
+            />
+          </FormControl>
+          <FormControl required size="small" sx={{ my: 1 }}>
+            <InputLabel htmlFor="demo-dialog-native">Category</InputLabel>
+            <Select
+              native
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              input={<OutlinedInput label="Category" id="demo-dialog-native" />}
+            >
+              <option aria-label="None" value="" />
+              <option value={"shirt"}>Shirt</option>
+              <option value={"skirt"}>Skirt</option>
+              <option value={"dress"}>Dress</option>
+            </Select>
+          </FormControl>
+          <FormControl size="small" sx={{ my: 1 }}>
+            <InputLabel required htmlFor="demo-dialog-native">
+              Size
+            </InputLabel>
+            <Select
+              native
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+              input={<OutlinedInput label="Size" id="demo-dialog-native" />}
+            >
+              <option aria-label="None" value="" />
+              <option value={"small"}>Small</option>
+              <option value={"medium"}>Medium</option>
+              <option value={"large"}>Large</option>
+            </Select>
+          </FormControl>
+          <FormControl>
+            <TextField
+              id="description"
+              name="description"
+              label="Description"
+              value={description}
+              multiline
+              maxRows={3}
+              size="small"
+              sx={{ my: 1 }}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </FormControl>
           <Box
