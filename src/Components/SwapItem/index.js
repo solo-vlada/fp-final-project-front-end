@@ -74,7 +74,7 @@ useEffect(() => {
             .catch(function (error) {
               console.error(error);
             });
-            navigate("/messages")
+            navigate("/messages/inbox")
   }
 
 

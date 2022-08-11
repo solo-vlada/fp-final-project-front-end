@@ -9,10 +9,6 @@ const Registration = () => {
     return (
 
         <div className='registerpage-container'>
-            <div className='registerpage-header'>
-                <Login/>
-                <Register/>
-            </div>
             <h1 css={{
                     fontSize: '2rem',
                     marginTop: '1rem',
@@ -56,12 +52,16 @@ const Registration = () => {
                         }}>
                         swap</span>
                     </h3>
-                    <h4 css={{
+                    {/* <h4 css={{
                         padding: '1rem',
                         fontWeight: '400',
                         fontSize: '1.5rem',
-                    }}>Staying fashionable and trying new clothes should not have to break the bank! <br /><br /> Here, you can find something you like, contact the owner of the item and<span css={{color:'#DD1C1A', fontWeight:'bold', fontSize:'1.7rem'}}>poof</span>, you can trade clothes with little hassle that doesn't take the fun out of fashion!</h4>
+                    }}>Staying fashionable and trying new clothes should not have to break the bank! <br /><br /> Here, you can find something you like, contact the owner of the item and<span css={{color:'#DD1C1A', fontWeight:'bold', fontSize:'1.7rem'}}>poof</span>, you can trade clothes with little hassle that doesn't take the fun out of fashion!</h4> */}
                 </div>
+            </div>
+            <div className='registerpage-header'>
+                <Login/>
+                <Register/>
             </div>
             <Footer />
         </div>
