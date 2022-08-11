@@ -1,7 +1,4 @@
-:root{
-  --nav-blue: #086788;
-  --papaya: rgb(239, 238, 235);
-}
+
 
 body{
   background-color: var(--papaya);

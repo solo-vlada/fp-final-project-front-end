@@ -6,6 +6,12 @@ export {default as AddNewItem } from "./AddNewItem";
 export {default as BottomNav} from "./BottomNavigation"
 export {default as MessagesInbox} from "./MessagesInbox"
 export {default as Lightbox} from "./Lightbox"
+<<<<<<< HEAD
+export {default as Footer} from "./Footer"
+export {default as InboxListItems} from "./InboxListItems"
+export {default as SendMessage} from "./SendMessage"
+=======
 export {default as MyListingsComp} from './MyListingsComp'
 export {default as PersonalLightbox} from "./PersonalListingLightBox"
 export {default as SwapItem} from "./SwapItem"
+>>>>>>> b1e0111df393b38ffd0f65ac422f6e61ad78cad4

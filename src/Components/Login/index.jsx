@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 
 //MATERIAL UI 
@@ -8,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField"
 import { useNavigate } from 'react-router-dom';
+import { ApiContext } from '../../ApiContext';
+
 
 
 const style = {
@@ -32,6 +36,8 @@ const style = {
     const [username, setUsername] = useState('')
     const [email, setEmail ] = useState('')
     const [password, setPassword] = useState('')
+    const [messages, setMessages] = useContext(ApiContext)
+
     // Add heroku endpoint
     const url = 'https://concept-crew-server.herokuapp.com/auth/login'
     const dev_url = 'http://localhost:5050/auth/login'
@@ -43,7 +49,11 @@ const style = {
 
       const options = {
         method: 'POST',
+<<<<<<< HEAD:src/Components/Login/index.jsx
+        url: 'https://concept-crew-server.herokuapp.com/auth/login',
+=======
         url: url,
+>>>>>>> b1e0111df393b38ffd0f65ac422f6e61ad78cad4:src/Components/Login/index.js
         auth: { username: username, password: password },
         headers: {
           'Content-Type': 'application/json',
@@ -69,7 +79,22 @@ const style = {
 
     return (
       <div>
-        <Button onClick={handleOpen}>Login</Button>
+        <Button 
+          onClick={handleOpen}
+          css={{
+            width: '150px',
+            backgroundColor: '#086788',
+            borderRadius: '10px',
+            border: '2px solid transparent',
+            padding: '0.5rem 2rem',
+            color: 'white',
+            '&:hover': {
+              border: '2px solid #086788',
+              color: '#086788',
+            }
+          }}>
+            Login
+        </Button>
         <Modal
           open={open}
           onClose={handleClose}

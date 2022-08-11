@@ -54,11 +54,13 @@ export default function AddNewItem() {
     const options = {
       method: "POST",
       url: api_url,
+
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "x-access-tokens": clientTokens,
       },
+
       data: {
         item_name: itemName,
         item_size: size,
@@ -82,7 +84,23 @@ export default function AddNewItem() {
     setItemName("");
     setSize("");
     setCategory("");
+    console.log(options.data)
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        handleClose();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    setDescription("");
+    setItemName("");
+    setSize("");
+    setCategory("");
   };
+  
+
   const handleImage = (e) => {
     e.preventDefault();
     if (imageUpload == null) return;
