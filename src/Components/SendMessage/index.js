@@ -68,7 +68,7 @@ export default function SendMessage({getReceiver}) {
                 },
             }}
             sx={{color: '#086788'}}/>
-        <Button 
+        <Button
             onClick={handleSubmit}
             css={{
                 width:'10%',
