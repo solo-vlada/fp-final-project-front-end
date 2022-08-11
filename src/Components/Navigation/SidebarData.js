@@ -21,12 +21,12 @@ export const SidebarData = [
     icon: <IoIcons.IoIosChatbubbles />,
     cName: "nav-text",
   },
-  {
-    title: "Settings",
-    path: "/settings",
-    icon: <IoIcons.IoIosSettings />,
-    cName: "nav-text",
-  },
+  // {
+  //   title: "Settings",
+  //   path: "/settings",
+  //   icon: <IoIcons.IoIosSettings />,
+  //   cName: "nav-text",
+  // },
   {
     title: "Logout",
     path: "/",

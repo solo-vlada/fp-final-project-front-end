@@ -8,6 +8,7 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
 import MenuIcon from '@mui/icons-material/Menu';
+import MailIcon from '@mui/icons-material/Mail';
 import "./burger.css";
 
 function Nav() {
@@ -41,7 +42,7 @@ function Nav() {
           </Link>
           <div className="nav-inbox" onClick={() => navigate('/messages')}>
             <div className="active-filter">
-            <InboxIcon className="nav-inbox-icon"/>
+            <MailIcon fontSize="large" className="nav-inbox-icon"/>
             </div>
           </div>
         </div>

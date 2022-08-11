@@ -17,7 +17,7 @@ const style = {
     transform: 'translate(-50%, -50%)',
     width: 'auto',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '2px solid transperent',
     boxShadow: 24,
     p: 4,
   };
@@ -45,19 +45,16 @@ export default function PersonalLightbox({clickedImg, handleRotationRight, setCl
             <ArrowBackIosIcon sx={{ mr:1}} fontSize="large" onClick={handleRotationLeft}/>
             <Box>
                 <img width="220px"  src={clickedImg} alt="bigger picture"/>
-                <Typography component="h4" variant="h6" sx={{ mt:1}} >{title}</Typography>
-                <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
-                <Typography sx={{ mt:1}} >{size}</Typography>
+                <Typography component="h4" variant="h6" sx={{ mt:1, fontFamily:"Lato"}} >{title}</Typography>
+                <Typography sx={{width: "200px", mt:1, fontFamily:"Lato"}}>{description}</Typography>
+                <Typography sx={{ mt:1, fontFamily:"Lato"} } >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button type="submit" onClick={handleDelete} variant="contained" >
-                        Delete
-                </Button>
                 </Box>
 
             </Box>
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}}fontSize="large"  className="dismiss" onClick={handleClick} />
+            <CloseIcon sx={{position:"absolute", top: '10px', right: '15px'}}fontSize="large"  className="dismiss" onClick={handleClick} />
         </Paper>
         
     </>)
