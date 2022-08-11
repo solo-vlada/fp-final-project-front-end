@@ -100,7 +100,7 @@ export default function MyListingsComp() {
   return (
     <Container maxWidth="small" sx={{ overflowY: "scroll", my: 5 }}>
       <div className="filter">
-        <FormControl required size="small" sx={{ my: 1, zIndex: -1000 }}>
+        <FormControl size="small" sx={{ my: 1, zIndex: -1000 }}>
           <InputLabel htmlFor="demo-dialog-native">Filter</InputLabel>
           <Select
             native
@@ -121,7 +121,7 @@ export default function MyListingsComp() {
         cols={2}
         gap={8}
         sx={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr)!important",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr)!important",
         }}
       >
         {itemData.map((item, index) => (

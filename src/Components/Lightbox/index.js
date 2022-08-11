@@ -16,7 +16,7 @@ const style = {
   width: "auto",
   borderRadius: "10px",
   bgcolor: "background.paper",
-  border: "1px solid #000",
+  border: "2px solid transperent",
   boxShadow: 24,
   p: 4,
 };
@@ -57,13 +57,13 @@ export default function Lightbox({
             />
             <Box>
               <img width="220px" src={clickedImg} alt="bigger picture" />
-              <Typography component="h4" variant="h6" sx={{ mt: 1 }}>
+              <Typography component="h4" variant="h6" sx={{ mt: 1, fontFamily: "Lato" }}>
                 {title}
               </Typography>
-              <Typography sx={{ width: "200px", mt: 1 }}>
+              <Typography sx={{ width: "200px", mt: 1, fontFamily: "Lato" }}>
                 {description}
               </Typography>
-              <Typography sx={{ mt: 1 }}>{size}</Typography>
+              <Typography sx={{ mt: 1, fontFamily: "Lato" }}>{size}</Typography>
               <Box
                 sx={{ display: "flex", justifyContent: "space-around", mt: 2 }}
               >

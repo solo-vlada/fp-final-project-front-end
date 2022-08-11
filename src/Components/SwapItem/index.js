@@ -88,8 +88,8 @@ const style = {
     borderRadius: '10px',
     width: 'auto',
     bgcolor: 'background.paper',
-    border: '1px solid #000',
-    boxShadow: 30,
+    border: '1px solid transperent',
+    boxShadow: 24,
     p: 4,
   };
 

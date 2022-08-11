@@ -147,7 +147,7 @@ export default function Listings() {
       >
         {itemData.map((item, index) => (
           <>
-            <ImageListItem key={index}>
+            <ImageListItem key={index} sx={{m:0.5}}>
               <img
                 key={item.id}
                 src={`${item.images}?w=248&fit=crop&auto=format`}
