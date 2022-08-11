@@ -4,8 +4,10 @@ import React, { useState } from 'react'
 import { TextField,Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export default function SendMessage(offer_id) {
+export default function SendMessage({getReceiver}) {
+    const { offer_id } = useParams();
     const [messageText, setMessageText] = useState('');
     const sender_id = localStorage.getItem('shopping-user-id');
     const access_token = localStorage.getItem('shopping-access-token');
@@ -14,11 +16,10 @@ export default function SendMessage(offer_id) {
         console.log(e.target.value);
         setMessageText(e.target.value);
     }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(messageText);
-
+        console.log(`offer_id: ${typeof offer_id}`);
         const options = {
           method: 'POST',
           url: 'https://concept-crew-server.herokuapp.com/auth/msg',
@@ -29,9 +30,9 @@ export default function SendMessage(offer_id) {
           },
           data: {
             message_text: messageText,
-            offer_id: offer_id,
+            offer_id: parseInt(offer_id),
             user_id: sender_id,
-            receiver_id: '33f6ec1a-1962-11ed-87f1-d678f9d6abea'
+            receiver_id: getReceiver
           }
         };
         

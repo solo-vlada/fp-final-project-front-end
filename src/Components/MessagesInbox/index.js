@@ -127,30 +127,31 @@ export default function MessagesInbox() {
                     : <p>Loading...</p>} */}
 
                 {/* <h1>{apiData.Messages[0].sender}</h1> */}
-                {offer != null ? offer.map((offers,index) => {
-                    if(offers.proposer !== user_id) {
-                    return (
-                        <div 
-                            data-offer_id={offers.offer_id} key={index} onClick={() => navigate(`/messages/${offers.offer_id}`)} 
-                            className='conversation-container'>
-                            <AccountCircleIcon viewBox='0 0 30 30' 
-                            className='conversation-avatar'/>
-                            <div className='conversation-info'>
-                            <h3 >{offers.proposer_name}</h3>
-                            <p>{offers.message_text}</p>
-                        </div> 
-                        </div>
-                    )} else {
+                {offer !== null && offer !== undefined ? 
+                    offer.map((offers,index) => {
+                        if(offers.proposer !== user_id) {
                         return (
-                            <div data-offer_id={offers.offer_id} key={index} onClick={() => navigate(`/messages/${offers.offer_id}`)}className='conversation-container'>
-                                <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
-                            <div className='conversation-info'>
-                                <h3 >{offers.reciever_name}</h3>
+                            <div 
+                                data-offer_id={offers.offer_id} key={index} onClick={() => navigate(`/messages/${offers.offer_id}`)} 
+                                className='conversation-container'>
+                                <AccountCircleIcon viewBox='0 0 30 30' 
+                                className='conversation-avatar'/>
+                                <div className='conversation-info'>
+                                <h3 >{offers.proposer_name}</h3>
                                 <p>{offers.message_text}</p>
                             </div> 
                             </div>
-                        )
-                    }
+                        )} else {
+                            return (
+                                <div data-offer_id={offers.offer_id} key={index} onClick={() => navigate(`/messages/${offers.offer_id}`)}className='conversation-container'>
+                                    <AccountCircleIcon viewBox='0 0 30 30' className='conversation-avatar'/>
+                                <div className='conversation-info'>
+                                    <h3 >{offers.reciever_name}</h3>
+                                    <p>{offers.message_text}</p>
+                                </div> 
+                                </div>
+                            )
+                        }
                 }) : <p>Loading...</p>}
 
         </div>
