@@ -100,7 +100,7 @@ export default function MyListingsComp() {
   return (
     <Container maxWidth="small" sx={{ overflowY: "scroll", my: 5 }}>
       <div className="filter">
-        <FormControl required size="small" sx={{ my: 1 }}>
+        <FormControl required size="small" sx={{ my: 1, zIndex: -1000 }}>
           <InputLabel htmlFor="demo-dialog-native">Filter</InputLabel>
           <Select
             native

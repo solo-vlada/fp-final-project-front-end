@@ -1,68 +1,107 @@
-import Box from "@mui/material/Box"
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import CloseIcon from '@mui/icons-material/Close';
+import Box from "@mui/material/Box";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import CloseIcon from "@mui/icons-material/Close";
 import { Paper, Typography } from "@mui/material";
-import Button from '@mui/material/Button'
+import Button from "@mui/material/Button";
 import { SwapItem } from "..";
-import {useState} from 'react'
-
-
-
+import { useState } from "react";
 
 const style = {
-    position: 'absolute',
-    display: 'flex',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 'auto',
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
+  position: "absolute",
+  display: "flex",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "auto",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+export default function Lightbox({
+  clickedImg,
+  handleRotationRight,
+  setClickedImg,
+  handleRotationLeft,
+  title,
+  description,
+  size,
+  receiverItemId,
+  receiverId,
+}) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isShown, setIsShown] = useState(true);
+
+  const handleClick = (e) => {
+    if (e.target.classList.contains("dismiss")) {
+      setClickedImg(null);
+    }
   };
 
-export default function Lightbox({clickedImg, handleRotationRight, setClickedImg, handleRotationLeft, title, description, size, receiverItemId, receiverId}) {
+  const handleSwap = () => {
+    setIsVisible(true);
+    setIsShown(false);
+    console.log(isVisible);
+  };
 
-    const [isVisible, setIsVisible] = useState(false);
-    const [isShown, setIsShown] = useState(true);
-
-    const handleClick = (e) => {
-        if(e.target.classList.contains("dismiss")) {
-            setClickedImg(null);
-        }
-    };
-
-    const handleSwap = () => {
-        setIsVisible(true)
-        setIsShown(false)
-        console.log(isVisible)
-    }
-
-    return (
+  return (
     <>
-     {isShown && <Paper sx={style} className="dismiss">
-        <Box sx={{display:"flex", alignItems: "center", position:"relative"}}>
-            <ArrowBackIosIcon sx={{ mr:1}} fontSize="large" onClick={handleRotationLeft}/>
+      {isShown && (
+        <Paper sx={style} className="dismiss">
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              position: "relative",
+              zIndex: 1000,
+            }}
+          >
+            <ArrowBackIosIcon
+              sx={{ mr: 1 }}
+              fontSize="large"
+              onClick={handleRotationLeft}
+            />
             <Box>
-                <img width="220px"  src={clickedImg} alt="bigger picture"/>
-                <Typography component="h4" variant="h6" sx={{ mt:1}} >{title}</Typography>
-                <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
-                <Typography sx={{ mt:1}} >{size}</Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button className="dismiss" type="submit" onClick={handleSwap} variant="contained">
-                        Swap
+              <img width="220px" src={clickedImg} alt="bigger picture" />
+              <Typography component="h4" variant="h6" sx={{ mt: 1 }}>
+                {title}
+              </Typography>
+              <Typography sx={{ width: "200px", mt: 1 }}>
+                {description}
+              </Typography>
+              <Typography sx={{ mt: 1 }}>{size}</Typography>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-around", mt: 2 }}
+              >
+                <Button
+                  className="dismiss"
+                  type="submit"
+                  onClick={handleSwap}
+                  variant="contained"
+                >
+                  Swap
                 </Button>
-                </Box>
-
+              </Box>
             </Box>
-            <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
-        </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
-        </Paper> }
-        {isVisible && <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />}
-        
-    </>)
-
+            <ArrowForwardIosIcon
+              sx={{ ml: 1 }}
+              fontSize="large"
+              onClick={handleRotationRight}
+            />
+          </Box>
+          <CloseIcon
+            sx={{ position: "absolute", top: "-50px", right: "15px" }}
+            fontSize="large"
+            className="dismiss"
+            onClick={handleClick}
+          />
+        </Paper>
+      )}
+      {isVisible && (
+        <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />
+      )}
+    </>
+  );
 }
