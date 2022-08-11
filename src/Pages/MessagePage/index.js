@@ -11,15 +11,18 @@ import { SendMessage } from '../../Components'
 
 export default function MessagePage() {
     const navigate = useNavigate();
-    const { reciever_id } = useParams();
+    const { offer_id } = useParams();
     const [message, setMessage] = useContext(ApiContext);
     const user_id = localStorage.getItem('shopping-user-id');
     const sender_id = localStorage.getItem('shopping-user-id');
+    const access_token = localStorage.getItem('shopping-access-token');
 
     // *************************** SEND MESSAGE IN CHAT ***************************
 
     //API endpoint for recieving messages
     const api_url = `https://concept-crew-server.herokuapp.com/auth/msg`
+    const apiGetOfferById = `https://concept-crew-server.herokuapp.com/auth/msg?offer_id=${offer_id}`;
+
     useEffect(() => {
         console.log(user_id);
 
@@ -32,7 +35,7 @@ export default function MessagePage() {
                 console.log(clientToken);
                 const options = {
                     method: 'GET',
-                    url: api_url,
+                    url: apiGetOfferById,
                     headers: {
                     'x-access-tokens': clientToken,
                     'Access-Control-Allow-Origin': '*',
@@ -79,7 +82,7 @@ export default function MessagePage() {
             justifyContent: 'space-between',
             alignItems: 'flex-start',
         }} >
-            <h1 css={{marginBottom:'0.5rem'}}>username: user 1</h1>
+            <h1 css={{marginBottom:'0.5rem'}}>username: {}</h1>
             <Box css={{
                 padding: '0.5rem',
                 overflowY: 'scroll',
@@ -89,7 +92,7 @@ export default function MessagePage() {
                 width: '100%',
                 height: '100%',
             }}>
-                {message != null ? message.Messages.map((message,index) => {
+                {/* {message != null ? message.Messages.map((message,index) => {
                     return (
                         <div key={index} css={{
                             borderRadius: '1rem',
@@ -109,7 +112,7 @@ export default function MessagePage() {
                             </p>
                         </div>
                     )   
-                }) : <p>Loading...</p>}
+                }) : <p>Loading...</p>} */}
             </Box>
         </Box>
         <div css={{
@@ -123,7 +126,7 @@ export default function MessagePage() {
             borderRadius: '0.5rem',
             padding: '1rem',
         }}>
-            <SendMessage />
+            <SendMessage offer_id={offer_id}/>
         </div>
     </div>
   )

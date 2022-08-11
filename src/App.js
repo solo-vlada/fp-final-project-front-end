@@ -17,7 +17,7 @@ function App() {
             <Route path="/mylistings" element={<MyListings />} />
             <Route path="/messages" >
               <Route path="/messages/inbox" element={<MessageInbox />} />
-              <Route path="/messages/:reciever_id" element={<MessagePage />} />
+              <Route path="/messages/:offer_id" element={<MessagePage />} />
             </Route>
           </Route>
         </Routes>
