@@ -15,6 +15,7 @@ import Select from "@mui/material/Select";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import CloseIcon from '@mui/icons-material/Close';
 
 const style = {
   position: "absolute",
@@ -123,9 +124,10 @@ export default function AddNewItem() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style} component="form">
-          <Typography variant="h6" component="h4">
+          <Typography variant="h6" component="h4" sx={{fontFamily:"Montserrat"}}>
             Add New Item
           </Typography>
+          <CloseIcon onClick={handleClose} fontSize='medium' sx={{position:"absolute", top: '15px', right: '15px'}}/>
           <FormControl>
             <TextField
               id="item_name"
@@ -149,6 +151,7 @@ export default function AddNewItem() {
               <option value={"shirt"}>Shirt</option>
               <option value={"skirt"}>Skirt</option>
               <option value={"dress"}>Dress</option>
+              <option value={"jeans"}>Jeans</option>
             </Select>
           </FormControl>
           <FormControl size="small" sx={{ my: 1 }}>
@@ -190,7 +193,24 @@ export default function AddNewItem() {
             {/* <Button type="submit" variant="contained">
               Add image
             </Button> */}
-            <Button variant="contained" component="label" onClick={handleImage}>
+            <Button
+          sx={{
+            width: '150px',
+            // backgroundColor: '#086788',
+            backgroundColor:'#0098AC',
+            fontFamily:"Montserrat",
+            alignSelf: 'center',
+            borderRadius: '10px',
+            border: '2px solid transparent',
+            padding: '0.5rem 2rem',
+            margin: 1,
+            color: 'white',
+            '&:hover': {
+              border: '2px solid #0098AC',
+              color: '#086788',
+            }
+          }}           
+             component="label" onClick={handleImage}>
               Upload
             </Button>
             <IconButton
@@ -206,9 +226,26 @@ export default function AddNewItem() {
                   setImageUpload(event.target.files[0]);
                 }}
               />
-              <PhotoCamera />
+              <PhotoCamera  sx={{color: '#0098AC' }}/>
             </IconButton>
-            <Button type="submit" onClick={handleSubmit} variant="contained">
+            <Button
+                      sx={{
+                        width: 'auto',
+                        // backgroundColor: '#086788',
+                        backgroundColor:'#0098AC',
+                        fontFamily:"Montserrat",
+                        alignSelf: 'center',
+                        borderRadius: '10px',
+                        border: '2px solid transparent',
+                        padding: '0.5rem 2rem',
+                        margin: 1,
+                        color: 'white',
+                        '&:hover': {
+                          border: '2px solid #0098AC',
+                          color: '#086788',
+                        }
+                      }}
+            type="submit" onClick={handleSubmit} >
               Submit
             </Button>
           </Box>
