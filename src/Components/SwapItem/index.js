@@ -12,13 +12,14 @@ import {Link } from 'react-router-dom'
 import { Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 export default function SwapItem({receiverId, receiverItemId}) {
   const [itemData, setItemData] = useState([]);
   const [clickedImg, setClickedImg] = useState(false);
 //   const [currentIndex, setCurrentIndex] = useState(null);
-//   const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('');
 //   const [description, setDescription] = useState('');
 //   const [size, setSize] = useState('');
   const [id, setId] = useState('')
@@ -40,14 +41,14 @@ useEffect(() => {
   const lightBoxHandler = (item, index) => {
     // setCurrentIndex(index);
     // setClickedImg(item.images);
-    // setTitle(item.item_name)
+    setTitle(item.item_name)
     // setDescription(item.description)
     // setSize(item.size)
     setId(item.id)
     setClickedImg(true)
-    
-    console.log(id)
+
   }
+
 
   function handleSubmit (e) {
         e.preventDefault();
@@ -84,18 +85,24 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    borderRadius: '10px',
     width: 'auto',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
+    border: '1px solid #000',
+    boxShadow: 30,
     p: 4,
   };
 
 
   return (
-    <Paper sx={style}>
-            <Box sx={{display: "flex", flexDirection:"column"}}>
-            <Typography sx={{mb:2, alignSelf: 'center',  border: '1px solid #000', p:1 }} component='h4' variant='h6'> Choose item to swap</Typography>
+    <>
+      <Paper 
+      sx={style}>
+          <Box sx={{display: "flex", flexDirection:'column'}}>
+            <Box>
+            <Typography sx={{mb:2, ml:3, alignSelf: 'center', p:1,fontFamily:"Montserrat"}} component='h4' variant='h6'> Choose item to swap</Typography>
+            <CloseIcon fontSize='medium' sx={{position:"absolute", top: '10px', right: '15px'}}/>
+            </Box>
             <ImageList variant="masonry" cols={2} gap={10} sx={{ m:1, 
             gridTemplateColumns:
             'repeat(auto-fill, minmax(300px, 1fr)!important'
@@ -104,10 +111,11 @@ const style = {
             <>
              <ImageListItem
                  sx = 
-                 {{height: '250px!important',
-                  width: 'auto',
+                 {{
+                  width:"130px" ,
                   }} key={index} >
                 <img
+                
                 key={item.id}
                 src={`${item.images}?w=248&fit=crop&auto=format`}
                 srcSet={`${item.images}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -122,9 +130,24 @@ const style = {
             </>
             ))}
         </ImageList>
-        <Button type="button" variant='contained'  sx={{alignSelf: 'center', mt:2 }}onClick={handleSubmit}>Next</Button>
+        <Button sx={{
+            width: '150px',
+            // backgroundColor: '#086788',
+            backgroundColor:'#0098AC',
+            fontFamily:"Montserrat",
+            alignSelf: 'center',
+            borderRadius: '10px',
+            border: '2px solid transparent',
+            padding: '0.5rem 2rem',
+            margin: 1,
+            color: 'white',
+            '&:hover': {
+              border: '2px solid #0098AC',
+              color: '#086788',
+            }
+          }} onClick={handleSubmit}>Next</Button>
         </Box>
     </Paper>
-  
+  </>
   );
 }

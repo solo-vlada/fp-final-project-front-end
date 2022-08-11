@@ -17,8 +17,9 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 'auto',
+    borderRadius: '10px',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '1px solid #000',
     boxShadow: 24,
     p: 4,
   };
@@ -51,7 +52,22 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
                 <Typography sx={{width: "200px", mt:1}}>{description}</Typography>
                 <Typography sx={{ mt:1}} >{size}</Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'space-around', mt:2}}>
-                <Button className="dismiss" type="submit" onClick={handleSwap} variant="contained">
+                <Button className="dismiss" type="submit" onClick={handleSwap}           
+                sx={{
+                    width: '150px',
+                    backgroundColor:'#0098AC',
+                    fontFamily:"Montserrat",
+                    alignSelf: 'center',
+                    borderRadius: '10px',
+                    border: '2px solid transparent',
+                    padding: '0.5rem 2rem',
+                    margin: 1,
+                    color: 'white',
+                    '&:hover': {
+                    border: '2px solid #0098AC',
+                    color: '#086788',
+                    }
+          }}>
                         Swap
                 </Button>
                 </Box>
@@ -59,7 +75,7 @@ export default function Lightbox({clickedImg, handleRotationRight, setClickedImg
             </Box>
             <ArrowForwardIosIcon  sx={{ ml:1}}fontSize="large" onClick={handleRotationRight} />
         </Box>
-            <CloseIcon sx={{position:"absolute", top: '-50px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
+            <CloseIcon sx={{position:"absolute", top: '10px', right: '15px'}} fontSize="large" className="dismiss" onClick={handleClick}/>
         </Paper> }
         {isVisible && <SwapItem receiverId={receiverId} receiverItemId={receiverItemId} />}
         
