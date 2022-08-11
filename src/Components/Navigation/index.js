@@ -7,6 +7,7 @@ import BurgerInbox from "../BurgerInbox";
 import InboxIcon from '@mui/icons-material/Inbox';
 import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
+import MenuIcon from '@mui/icons-material/Menu';
 import "./burger.css";
 
 function Nav() {
@@ -28,8 +29,11 @@ function Nav() {
         <div className="navbar">
           <Link to="#" className="menu-bars">
             {/* <FaIcons.FaBars onClick={showSidebar} /> */}
-            <img
-              src="https://static1.personality-database.com/profile_images/90b97eb971164bc3a6fc41f63226a92a.png"
+            {/* <img
+              src="https://static1.personality-database.com/profile_images/90b97eb971164bc3a6fc41f63226a92a.png" */}
+              <MenuIcon
+             
+              fontSize="large"
               alt="avatar"
               className="nav-avatar"
               onClick={showSidebar}
