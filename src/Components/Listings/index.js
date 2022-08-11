@@ -112,7 +112,7 @@ export default function Listings() {
       }}
     >
       <div className="filter">
-        <FormControl required size="small" sx={{ my: 1 }}>
+        <FormControl required size="small" sx={{ my: 1, zIndex: -1000 }}>
           <InputLabel
             id="demo-simple-select-label"
             htmlFor="demo-dialog-native"
