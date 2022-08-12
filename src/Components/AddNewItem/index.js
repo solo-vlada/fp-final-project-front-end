@@ -144,9 +144,9 @@ export default function AddNewItem() {
             >
               <option aria-label="None" value="" />
               <option value={"shirt"}>Shirt</option>
-              <option value={"skirt"}>Skirt</option>
               <option value={"dress"}>Dress</option>
               <option value={"jeans"}>Jeans</option>
+              <option value={"shoes"}>Shoes</option>
             </Select>
           </FormControl>
           <FormControl size="small" sx={{ my: 1 }}>
