@@ -49,11 +49,11 @@ export default function MessagePage() {
                 .then( (response) => {
                     console.log(`Data: ${JSON.stringify(response.data)}`);
                     setMessage(response.data);
-                    if (response.data.Messages[0].sender === user_id) {
-                        setGetReceiver(response.data.Messages[0].receiver);
-                    } else {
-                        setGetReceiver(response.data.Messages[0].sender);
-                    }
+                    // if (response.data.Messages[0].sender === user_id) {
+                    //     setGetReceiver(response.data.Messages[0].receiver);
+                    // } else {
+                    //     setGetReceiver(response.data.Messages[0].sender);
+                    // }
                     // apiData = response.data
                     console.log(message); 
                 })
@@ -89,7 +89,7 @@ export default function MessagePage() {
                     justifyContent: 'space-between',
                     alignItems: 'flex-start',
                 }} >
-                    <h1 css={{marginBottom:'0.5rem'}}>username: {}</h1>
+                    {/* <h1 css={{marginBottom:'0.5rem'}}></h1> */}
                     <Box css={{
                         padding: '0.5rem',
                         overflowY: 'scroll',
@@ -99,7 +99,7 @@ export default function MessagePage() {
                         width: '100%',
                         height: '100%',
                     }}>
-                        {message !== null && message !== undefined ? message.Messages.map((message,index) => {
+                        {message.Messages !== null && message.Messages !== undefined ? message.Messages.map((message,index) => {
                             return (
                                 <div key={index} css={{
                                     borderRadius: '1rem',

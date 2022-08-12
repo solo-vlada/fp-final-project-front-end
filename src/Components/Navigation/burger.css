@@ -35,7 +35,13 @@ body{
 
 .nav-avatar {
   color: #f5f5f5;
-  
+  border-radius: 50%;
+  width: 50px;
+}
+
+.nav-avatar:focus {
+  outline: none;
+  user-select: none;
 }
 
 .nav-menu {

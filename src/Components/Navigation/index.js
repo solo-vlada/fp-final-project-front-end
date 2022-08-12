@@ -10,11 +10,13 @@ import { IconContext } from "react-icons";
 import MenuIcon from '@mui/icons-material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
 import "./burger.css";
+import avatarToggle from '../../Static/imgs/avatar-toggle.png';
 
 function Nav() {
   const navigate = useNavigate();
   const [sidebar, setSidebar] = useState(false);
   const [inboxSidebar, setInboxSidebar] = useState(false);
+  const [avatarPosition, setAvatarPosition] = useState(false);
 
   const showSidebar = () => {
     setSidebar(!sidebar);
@@ -24,16 +26,17 @@ function Nav() {
     setInboxSidebar(!inboxSidebar);
   };
 
+  
+
   return (
     <div>
       <IconContext.Provider value={{ color: "#fff" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
             {/* <FaIcons.FaBars onClick={showSidebar} /> */}
-            {/* <img
-              src="https://static1.personality-database.com/profile_images/90b97eb971164bc3a6fc41f63226a92a.png" */}
-              <MenuIcon
-             
+            <img
+              src={avatarToggle}
+              id="avatar-toggle"
               fontSize="large"
               alt="avatar"
               className="nav-avatar"

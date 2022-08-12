@@ -93,6 +93,9 @@ const style = {
             Login
         </Button>
         <Modal
+          css={{
+            zIndex: '100',
+          }}
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"

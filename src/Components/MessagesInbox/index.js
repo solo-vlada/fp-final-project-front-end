@@ -1,9 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import React, { useContext, useEffect, useState } from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import InboxListItems from '../InboxListItems';
 import { ApiContext } from '../../ApiContext';
+import { Button } from '@mui/material';
 
 export default function MessagesInbox() {
     const navigate = useNavigate();
@@ -132,14 +135,35 @@ export default function MessagesInbox() {
                         if(offers.proposer !== user_id) {
                         return (
                             <div 
-                                data-offer_id={offers.offer_id} key={index} onClick={() => navigate(`/messages/${offers.offer_id}`)} 
+                                data-offer_id={offers.offer_id}
+                                key={index}
                                 className='conversation-container'>
-                                <AccountCircleIcon viewBox='0 0 30 30' 
-                                className='conversation-avatar'/>
-                                <div className='conversation-info'>
-                                <h3 >{offers.proposer_name}</h3>
-                                <p>{offers.message_text}</p>
-                            </div> 
+
+                                <AccountCircleIcon
+                                    viewBox='0 0 30 30' 
+                                    className='conversation-avatar'
+                                />
+
+                                <div className='conversation-info' css={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-between', 
+                                    width: '100%',
+                                }}>
+                                    <h3 >{offers.proposer_name}</h3>
+                                    <Button css={{
+                                        backgroundColor: '#ac1313',
+                                        color: 'white',
+                                        cursor: 'pointer',
+                                        border: '2px solid transparent',
+                                        '&:hover': {
+                                            cursor: 'pointer',
+                                            backgroundColor: 'transparent',
+                                            color: '#ac1313',
+                                            border: '2px solid #ac1313',
+                                        }
+                                    }} onClick={() => navigate(`/messages/${offers.offer_id}`)}>Accept?</Button>
+                                </div> 
                             </div>
                         )} else {
                             return (
@@ -148,6 +172,7 @@ export default function MessagesInbox() {
                                 <div className='conversation-info'>
                                     <h3 >{offers.reciever_name}</h3>
                                     <p>{offers.message_text}</p>
+                                    <Button onClick={() => navigate(`/messages/${offers.offer_id}`)} >Accept?</Button>
                                 </div> 
                                 </div>
                             )

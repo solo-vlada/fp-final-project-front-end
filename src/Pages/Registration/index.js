@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css, keyframes } from '@emotion/react';
+import { css } from '@emotion/react';
 import React from "react";
 import {AddNewItem, Login, Register, Footer, SwapItem} from '../../Components'
 import './registration.css'
@@ -9,15 +9,18 @@ import logo from '../../Static/imgs/logo.png'
 const Registration = () => {
     return (
 
-        <div className='registerpage-container'>
+        <div className='registerpage-container' css={{
+            width: '100%',
+        }}>
             <img css={{width:'250px'}} src={logo}/>
             <img
                 src={mockup}
                 alt='iphone mockup'
                 css={{
-                    width: '250px',
+                    height: '400px',
                     transform: 'skewX(10deg)',
                     marginBottom: '1.5rem',
+                    overflowX: 'hidden',
                     animation: 'rotate 30s linear infinite',
                     '@keyframes rotate': {
                         '0%': {
