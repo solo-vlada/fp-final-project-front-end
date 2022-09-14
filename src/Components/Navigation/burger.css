@@ -1,0 +1,168 @@
+
+
+body{
+  background-color: var(--papaya);
+}
+.navbar {
+  background-color: rgb(0, 152, 172);
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+}
+
+.nav-inbox {
+  margin-right: 2rem;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.nav-inbox-icon {
+  color: #f5f5f5;
+}
+
+.nav-inbox:hover {
+  box-shadow: 0 0 5px 4px rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.nav-avatar {
+  color: #f5f5f5;
+  
+}
+
+.nav-menu {
+  z-index:1;
+  background-color: rgb(0, 152, 172);
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.nav-menu.active {
+  left: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: #1a83ff;
+}
+
+.nav-menu-items {
+  width: 100%;
+}
+
+.navbar-toggle {
+  background-color: rgb(0, 152, 172);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+span {
+  margin-left: 16px;
+}
+
+/* ***************** Inbox side bar ******************* */
+
+.navbar-inbox {
+  background-color: transparent;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  transition: 850ms;
+}
+
+.nav-inbox:active {
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar-inbox.active {
+  right: 0;
+  transition: 350ms;
+}
+
+.nav-text {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
+}
+
+.nav-text a:hover {
+  background-color: #1a83ff;
+}
+
+.nav-menu-items {
+  background-color: rgb(0, 152, 172);
+  width: 100%;
+}
+
+.nav-menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+}
+
+.navbar-inbox-toggle {
+  background-color: rgb(0, 152, 172);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
